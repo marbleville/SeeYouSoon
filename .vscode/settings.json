@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "SeeYouSoon.slnx"
+    "dotnet.defaultSolution": "See You Soon.slnx"
 }
