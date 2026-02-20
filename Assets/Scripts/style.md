@@ -54,6 +54,8 @@ if (canMove)
 }
 ```
 
+## 4) Avoid the `var` keyword
+
 ## Additional Style Callouts To Consider
 
 1. Name private serialized fields in `camelCase` and keep them near the top of the class.
