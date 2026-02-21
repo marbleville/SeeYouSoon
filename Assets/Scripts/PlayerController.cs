@@ -10,19 +10,25 @@ public class FPSPlayerController : MonoBehaviour
   [SerializeField] float airControl = 10f;
   [SerializeField] float CrouchSpeed = 5f;
   [SerializeField] float crouchDepthRatio = 0.5f;
+  [SerializeField] float sprintSpeed = 30f;
 
-  public bool IsCrouching { get; private set; }
+  public bool IsCrouching { get; private set; } = false;
+  public bool IsSprinting { get; private set; } = false;
 
   private Vector3 input;
   private Vector3 moveDirection;
   private CharacterController controller;
-  private Vector3 ogScale;
+  private Vector3 originalScale;
+  private float originalSpeed;
+  private float targetSpeed;
 
   // Start is called once before the first execution of Update after the MonoBehaviour is created
   void Start()
   {
     controller = GetComponent<CharacterController>();
-    ogScale = transform.localScale;
+    originalScale = transform.localScale;
+    originalSpeed = speed;
+    targetSpeed = speed;
   }
 
   // Update is called once per frame
@@ -33,11 +39,20 @@ public class FPSPlayerController : MonoBehaviour
     input = transform.right * moveHorizonatal + transform.forward * moveVertical;
     input.Normalize();
 
+    targetSpeed = originalSpeed;
+
+    // Movement handlers go here
     HandleJump();
     HandleCrouch();
+    HandleSprint();
+    // End movement handlers
+
+    speed = targetSpeed;
 
     moveDirection.y -= gravity * Time.deltaTime;
     controller.Move(speed * Time.deltaTime * moveDirection);
+
+    Debug.Log(speed);
   }
 
   void HandleJump()
@@ -72,11 +87,32 @@ public class FPSPlayerController : MonoBehaviour
 
   void Crouch()
   {
+    UpdateSpeed(IsCrouching, originalSpeed * crouchDepthRatio);
+
     float step = CrouchSpeed * Time.deltaTime;
 
     Vector3 targetScale = transform.localScale;
-    targetScale.y = IsCrouching ? ogScale.y * crouchDepthRatio : ogScale.y;
+    targetScale.y = IsCrouching ? originalScale.y * crouchDepthRatio : originalScale.y;
 
     transform.localScale = Vector3.Lerp(transform.localScale, targetScale, step);
+  }
+
+  void HandleSprint()
+  {
+    bool sprint = Input.GetButton("Sprint");
+    IsSprinting = sprint && !IsCrouching;
+
+    Sprint();
+  }
+
+  void Sprint()
+  {
+    // TODO: Increase FOV while sprinting
+    UpdateSpeed(IsSprinting, sprintSpeed);
+  }
+
+  void UpdateSpeed(bool pred, float speed)
+  {
+    targetSpeed = pred ? speed : targetSpeed;
   }
 }
