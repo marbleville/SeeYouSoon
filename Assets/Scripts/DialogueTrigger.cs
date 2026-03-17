@@ -11,6 +11,7 @@ public class DialogueTrigger : MonoBehaviour
 
     void Update()
     {
+        // May need to update - using E for now.
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
             if (!DialogueManager.Instance.IsDialogueActive())
