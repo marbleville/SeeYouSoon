@@ -18,4 +18,9 @@ public class PickupExample : APickupable
     {
         Debug.Log("Picked Up!");
     }
+
+    public override void OnDrop()
+    {
+        Debug.Log("Dropped!");
+    }
 }
