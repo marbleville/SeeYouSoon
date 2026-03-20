@@ -86,7 +86,7 @@ public class DialogueManager : MonoBehaviour
             nextArrow.SetActive(currentLineIndex < currentLines.Length - 1);
     }
 
-    void NextLine()
+    public void NextLine()
     {
         if (!isDialogueActive) return;
 
