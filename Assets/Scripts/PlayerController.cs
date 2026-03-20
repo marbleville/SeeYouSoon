@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -34,6 +33,8 @@ public class FPSPlayerController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    if (DialogueManager.Instance.IsDialogueActive()) return;
+
     float moveHorizonatal = Input.GetAxis("Horizontal");
     float moveVertical = Input.GetAxis("Vertical");
     input = transform.right * moveHorizonatal + transform.forward * moveVertical;
@@ -51,8 +52,6 @@ public class FPSPlayerController : MonoBehaviour
 
     moveDirection.y -= gravity * Time.deltaTime;
     controller.Move(speed * Time.deltaTime * moveDirection);
-
-    Debug.Log(speed);
   }
 
   void HandleJump()
