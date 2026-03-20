@@ -103,3 +103,5 @@ Assets/.DS_Store
 .DS_Store
 Assets/Versatile Studio Assets/
 **/LightingData.asset
+
+.vscode/

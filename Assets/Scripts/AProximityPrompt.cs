@@ -14,6 +14,8 @@ public abstract class AProximityPrompt : MonoBehaviour
   private GameObject player;
   private float playerDist;
   private static List<AProximityPrompt> instances = new List<AProximityPrompt>();
+  private readonly float debounceTime = 0.1f;
+  private float debounceTimer = 0;
 
   public void Start()
   {
@@ -26,6 +28,7 @@ public abstract class AProximityPrompt : MonoBehaviour
 
   public void Update()
   {
+    debounceTimer -= Mathf.Clamp(debounceTimer - Time.deltaTime, 0, debounceTime);
     playerDist = Vector3.Distance(transform.position, player.transform.position);
     FadePrompt();
     HandlePromptInput();
@@ -52,7 +55,9 @@ public abstract class AProximityPrompt : MonoBehaviour
 
   private void HandlePromptInput()
   {
-    if (playerDist > interactDinstance || !Input.GetKeyDown(KeyCode.E)) return;
+    if (playerDist > interactDinstance || !Input.GetKeyDown(KeyCode.E) || debounceTimer > 0.05) return;
+
+    debounceTimer = debounceTime;
 
     AProximityPrompt[] sortedInstances = instances.OrderBy(i => i.playerDist).ToArray();
     AProximityPrompt closestInstance = sortedInstances[0];
