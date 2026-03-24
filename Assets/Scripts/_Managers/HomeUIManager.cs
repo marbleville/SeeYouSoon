@@ -27,6 +27,11 @@ public class HomeUIManager : MonoBehaviour
 
     public void StartGame()
     {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.StartNewGame();
+        }
+
         SceneManager.LoadScene(firstLevelSceneName);
     }
 
