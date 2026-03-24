@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] 
     private string thirdLevelSceneName = "Level3_Cafe";
 
-
     public float RemainingTime { get; private set; }
     public bool IsPaused { get; private set; }
     public bool IsGameRunning { get; private set; }
@@ -79,6 +78,7 @@ public class GameManager : MonoBehaviour
     public void RegisterLevelStart()
     {
         levelStartTime = RemainingTime;
+        IsGameRunning = true;
         ResumeGame();
     }
 
@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel(string nextSceneName)
     {
+        IsGameRunning = true;
         ResumeGame();
         SceneManager.LoadScene(nextSceneName);
     }

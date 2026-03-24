@@ -102,8 +102,7 @@ public class DialogueManager : MonoBehaviour
 
         if (currentLineIndex >= currentLines.Length)
         {
-            EndDialogue();
-            return;
+            currentLineIndex = 0;
         }
 
         ShowCurrentLine();

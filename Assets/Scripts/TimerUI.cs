@@ -8,7 +8,8 @@ public class TimerUI : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance == null) return;
+        if (GameManager.Instance == null || timerText == null)
+            return;
 
         timerText.text = GameManager.Instance.FormatTime();
     }
