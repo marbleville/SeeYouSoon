@@ -18,6 +18,8 @@ public class DialogueManager : MonoBehaviour
     [TextArea(2, 5)]
     public string[] introLines;
 
+    [Header("Options")]
+    public bool playIntroOnStart = false;
 
     private string currentSpeaker;
     private string[] currentLines;
@@ -39,7 +41,13 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         dialogueBox.SetActive(false);
-        StartDialogue(introSpeakerName, introLines);
+        nextArrow.SetActive(false);
+        previousArrow.SetActive(false);
+
+        if (playIntroOnStart)
+        {
+            StartDialogue(introSpeakerName, introLines);
+        }
     }
 
     void Update()
@@ -86,7 +94,7 @@ public class DialogueManager : MonoBehaviour
             nextArrow.SetActive(currentLineIndex < currentLines.Length - 1);
     }
 
-    void NextLine()
+    public void NextLine()
     {
         if (!isDialogueActive) return;
 
@@ -119,8 +127,12 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
         dialogueBox.SetActive(false);
         dialogueText.text = "";
-        nextArrow.SetActive(false);
-        previousArrow.SetActive(false);
+
+        if (nextArrow != null)
+            nextArrow.SetActive(false);
+
+        if (previousArrow != null)
+            previousArrow.SetActive(false);
     }
 
     public bool IsDialogueActive()
