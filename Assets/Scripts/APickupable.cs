@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class APickupable : AProximityPrompt
 {
   public override string PromptTag { get; } = "PickupPrompt";
+  public AudioClip pickUpSFX;
 
   private Vector3 pickupOffset = new Vector3(1, 0.5f, 0);
   private bool isHolding = false;
@@ -16,6 +17,8 @@ public abstract class APickupable : AProximityPrompt
   {
     if (!isHolding)
     {
+      if (pickUpSFX) 
+        AudioSource.PlayClipAtPoint(pickUpSFX, transform.position);
       PickupObject();
     }
     else
