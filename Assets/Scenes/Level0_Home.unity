@@ -288,11 +288,24 @@ MonoBehaviour:
   previousArrow: {fileID: 1189001313}
   introSpeakerName: Guide
   introLines:
-  - "Welcome to See You Soon. You are trying to make it to the caf\xE9 before sunrise.
-    Use the left and right arrow keys to navigate the text boxes."
-  - Each level brings you closer to your destination. Follow clues and keep moving
-    before time runs out.
-  - You can return to the main menu at any time. Use ESC to navigate.
+  - "Welcome to See You Soon.\nYou\u2019re racing across the city to reach the caf\xE9
+    before sunrise.\nUse the left and right arrow keys to navigate these messages."
+  - 'Each level brings you closer to your destination.
+
+    Follow clues, explore
+    the environment, and keep moving before time runs out.'
+  - 'You can interact with objects in the world.
+
+    When an object can be picked
+    up, a dialog prompt will appear.'
+  - Press E to pick up or drop items when prompted.
+  - 'Press ESC at any time to pause the game.
+
+    From the pause menu you can restart
+    the level or return to the main menu.
+
+    * Note that returning to the main
+    menu DOES NOT save your progress.'
   playIntroOnStart: 0
 --- !u!4 &7374670
 Transform:
@@ -343,9 +356,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128daa88ed05544abbd0ad03f094e391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  totalGameTime: 300
+  totalGameTime: 900
   homeSceneName: Level0_Home
   firstLevelSceneName: Level1_Office
+  secondLevelSceneName: Level2_City
+  thirdLevelSceneName: Level3_Cafe
 --- !u!4 &233295368
 Transform:
   m_ObjectHideFlags: 0
