@@ -55,18 +55,18 @@ public class LevelManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (pauseSettingsPanel != null && pauseSettingsPanel.activeSelf)
+            if (pauseSettingsPanel != null && !pauseSettingsPanel.activeSelf)
             {
-                ShowPauseMenu();
+                PauseLevel();
             }
             else if (pausePanel != null && pausePanel.activeSelf)
             {
                 ResumeLevel();
             }
-            else
-            {
-                PauseLevel();
-            }
+            // else
+            // {
+            //     PauseLevel();
+            // }
         }
     }
 
@@ -139,15 +139,6 @@ public class LevelManager : MonoBehaviour
     {
         if (pausePanel != null) pausePanel.SetActive(false);
         if (pauseSettingsPanel != null) pauseSettingsPanel.SetActive(true);
-
-        UnlockCursorForMenu();
-        SetGameplayScriptsEnabled(false);
-    }
-
-    public void ShowPauseMenu()
-    {
-        if (pausePanel != null) pausePanel.SetActive(true);
-        if (pauseSettingsPanel != null) pauseSettingsPanel.SetActive(false);
 
         UnlockCursorForMenu();
         SetGameplayScriptsEnabled(false);
