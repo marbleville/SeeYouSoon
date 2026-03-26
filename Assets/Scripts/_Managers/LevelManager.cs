@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Player Control Scripts")]
     [SerializeField] 
-    private MonoBehaviour[] gameplayScriptsToDisable;
+    private GameObject gameplayScriptsRoot;
 
     private bool levelEnded = false;
 
@@ -93,11 +93,12 @@ public class LevelManager : MonoBehaviour
 
     private void SetGameplayScriptsEnabled(bool enabled)
     {
-        if (gameplayScriptsToDisable == null) return;
+        if (gameplayScriptsRoot == null) return;
 
-        foreach (MonoBehaviour script in gameplayScriptsToDisable)
+        MonoBehaviour[] scripts = gameplayScriptsRoot.GetComponentsInChildren<MonoBehaviour>(true);
+        foreach (MonoBehaviour script in scripts)
         {
-            if (script != null)
+            if (script != null && script != this)
             {
                 script.enabled = enabled;
             }
