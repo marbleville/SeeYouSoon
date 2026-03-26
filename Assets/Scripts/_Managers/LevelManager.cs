@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour
         if (levelEnded)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (pauseSettingsPanel != null && !pauseSettingsPanel.activeSelf)
             {
@@ -63,10 +63,6 @@ public class LevelManager : MonoBehaviour
             {
                 ResumeLevel();
             }
-            // else
-            // {
-            //     PauseLevel();
-            // }
         }
     }
 
