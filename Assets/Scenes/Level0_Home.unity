@@ -299,13 +299,15 @@ MonoBehaviour:
     When an object can be picked
     up, a dialog prompt will appear.'
   - Press E to pick up or drop items when prompted.
-  - 'Press ESC at any time to pause the game.
+  - 'Press ''P'' at any time to pause the game.
 
-    From the pause menu you can restart
-    the level or return to the main menu.
+    From the pause menu you can
+    restart the level or return to the main menu.
 
-    * Note that returning to the main
-    menu DOES NOT save your progress.'
+    * Note that returning to the
+    main menu DOES NOT save your progress.'
+  - 'For the purpose of this project, pressing ''K'' will allow you to win the level,
+    and pressing ''L'' will allow you to lose the level. '
   playIntroOnStart: 0
 --- !u!4 &7374670
 Transform:
