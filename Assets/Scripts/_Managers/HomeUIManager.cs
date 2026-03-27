@@ -56,8 +56,8 @@ public class HomeUIManager : MonoBehaviour
         if (instructionsDialogueManager != null)
         {
             instructionsDialogueManager.StartDialogue(
-                instructionsDialogueManager.introSpeakerName,
-                instructionsDialogueManager.introLines
+                instructionsDialogueManager.speakerName,
+                instructionsDialogueManager.dialogueLines
             );
         }
     }
