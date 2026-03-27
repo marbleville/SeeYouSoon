@@ -28,7 +28,7 @@ public abstract class AProximityPrompt : MonoBehaviour
 
   public void Update()
   {
-    debounceTimer -= Mathf.Clamp(debounceTimer - Time.deltaTime, 0, debounceTime);
+    debounceTimer = Mathf.Clamp(debounceTimer - Time.deltaTime, -0.1f, debounceTime);
     playerDist = Vector3.Distance(transform.position, player.transform.position);
     FadePrompt();
     HandlePromptInput();
@@ -55,7 +55,7 @@ public abstract class AProximityPrompt : MonoBehaviour
 
   private void HandlePromptInput()
   {
-    if (playerDist > interactDinstance || !Input.GetKeyDown(KeyCode.E) || debounceTimer > 0.05) return;
+    if (playerDist > interactDinstance || !Input.GetKeyDown(KeyCode.E) || debounceTimer > 0) return;
 
     debounceTimer = debounceTime;
 
