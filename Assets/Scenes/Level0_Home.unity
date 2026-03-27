@@ -299,6 +299,7 @@ MonoBehaviour:
     level, and pressing ''''L'''' will allow you to lose the level. '
   - Good luck, and we hope to see you soon...
   playIntroOnStart: 0
+  loopDialogue: 1
 --- !u!4 &7374670
 Transform:
   m_ObjectHideFlags: 0
