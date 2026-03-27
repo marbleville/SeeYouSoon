@@ -1,15 +1,33 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(AudioSource))]
 public class FPSPlayerController : MonoBehaviour
 {
-  [SerializeField] float speed = 20f;
+  [SerializeField] float speed = 5f;
   [SerializeField] float jumpHeight = 0.4f;
   [SerializeField] float gravity = 9.81f;
   [SerializeField] float airControl = 10f;
   [SerializeField] float CrouchSpeed = 5f;
   [SerializeField] float crouchDepthRatio = 0.5f;
-  [SerializeField] float sprintSpeed = 30f;
+  [SerializeField] float sprintSpeed = 10f;
+
+  [Header("Footsteps")]
+  [SerializeField] AudioClip leftFootClip;
+  [SerializeField] AudioClip rightFootClip;
+  [SerializeField] float walkStepInterval = 0.5f;
+  [SerializeField] float sprintStepInterval = 0.35f;
+  [SerializeField] float crouchStepInterval = 0.65f;
+  [SerializeField] float stepRateMultiplier = 1.2f;
+  [SerializeField] float walkStepVolume = 1f;
+  [SerializeField] float sprintStepVolume = 1f;
+  [SerializeField] float crouchStepVolume = 0.45f;
+  [SerializeField] float footstepStartMoveSpeed = 0.35f;
+  [SerializeField] float footstepStopMoveSpeed = 0.2f;
+  [SerializeField] float footstepRetriggerDelay = 0.1f;
+  [SerializeField] float minStepInterval = 0.16f;
+  [SerializeField] float maxStepInterval = 0.75f;
+  [SerializeField] float crouchToggleStepDelay = 0.12f;
 
   public bool IsCrouching { get; private set; } = false;
   public bool IsSprinting { get; private set; } = false;
@@ -17,23 +35,38 @@ public class FPSPlayerController : MonoBehaviour
   private Vector3 input;
   private Vector3 moveDirection;
   private CharacterController controller;
+  private AudioSource audioSource;
   private Vector3 originalScale;
   private float originalSpeed;
   private float targetSpeed;
 
-  // Start is called once before the first execution of Update after the MonoBehaviour is created
+  private float footstepTimer;
+  private Vector3 lastPosition;
+  private bool playLeftNext = true;
+  private bool wasFootstepMoving = false;
+  private bool previousCrouchState = false;
+
   void Start()
   {
     controller = GetComponent<CharacterController>();
+    audioSource = GetComponent<AudioSource>();
+
     originalScale = transform.localScale;
     originalSpeed = speed;
     targetSpeed = speed;
+    lastPosition = transform.position;
+
+    audioSource.playOnAwake = false;
+    audioSource.loop = false;
   }
 
-  // Update is called once per frame
   void Update()
   {
-    if (DialogueManager.Instance.IsDialogueActive()) return;
+    if (DialogueManager.Instance.IsDialogueActive())
+    {
+      StopFootsteps();
+      return;
+    }
 
     float moveHorizonatal = Input.GetAxis("Horizontal");
     float moveVertical = Input.GetAxis("Vertical");
@@ -52,6 +85,8 @@ public class FPSPlayerController : MonoBehaviour
 
     moveDirection.y -= gravity * Time.deltaTime;
     controller.Move(speed * Time.deltaTime * moveDirection);
+
+    HandleFootsteps();
   }
 
   void HandleJump()
@@ -80,6 +115,15 @@ public class FPSPlayerController : MonoBehaviour
   {
     bool crouch = Input.GetButton("Crouch");
     IsCrouching = crouch;
+
+    if (previousCrouchState != IsCrouching)
+    {
+      // Prevent bursty first steps when crouch state toggles
+      footstepTimer = Mathf.Max(footstepTimer, crouchToggleStepDelay);
+      lastPosition = transform.position;
+      wasFootstepMoving = false;
+    }
+    previousCrouchState = IsCrouching;
 
     Crouch();
   }
@@ -113,5 +157,74 @@ public class FPSPlayerController : MonoBehaviour
   void UpdateSpeed(bool pred, float speed)
   {
     targetSpeed = pred ? speed : targetSpeed;
+  }
+
+  // Plays footstep sounds based on real movement speed
+  void HandleFootsteps()
+  {
+    Vector3 horizontalDelta = transform.position - lastPosition;
+    horizontalDelta.y = 0f;
+
+    // gives movement distance, turned into speed by dividing by frame time
+    float actualMoveSpeed = horizontalDelta.magnitude / Mathf.Max(Time.deltaTime, 0.0001f);
+    lastPosition = transform.position;
+
+    // checks if there is movement input without doing a square root
+    bool wantsToMove = input.sqrMagnitude > 0.01f;
+    bool canStep = controller.isGrounded && wantsToMove;
+    float moveThreshold = wasFootstepMoving ? footstepStopMoveSpeed : footstepStartMoveSpeed;
+    bool isActuallyMoving = canStep && actualMoveSpeed > moveThreshold;
+
+    if (!isActuallyMoving)
+    {
+      wasFootstepMoving = false;
+
+      // Keeps the bigger timer so footstep sounds do not spam.
+      footstepTimer = Mathf.Max(footstepTimer, footstepRetriggerDelay);
+      return;
+    }
+
+    wasFootstepMoving = true;
+
+    footstepTimer -= Time.deltaTime;
+    if (footstepTimer > 0f) return;
+
+    PlayFootstepClip();
+    footstepTimer = GetStepInterval(actualMoveSpeed);
+  }
+
+  // Chooses how long to wait before the next footstep sound
+  float GetStepInterval(float actualMoveSpeed)
+  {
+    float baseInterval = walkStepInterval;
+    if (IsSprinting) baseInterval = sprintStepInterval;
+    if (IsCrouching) baseInterval = crouchStepInterval;
+
+    // converts movement speed into a scale w minimum
+    float speedScale = Mathf.Max(actualMoveSpeed / Mathf.Max(originalSpeed, 0.01f), 0.2f);
+
+    // Faster speed = shorter delay between footsteps
+    float adjustedInterval = baseInterval / (speedScale * Mathf.Max(stepRateMultiplier, 0.01f));
+
+    // Keeps the final delay inside safe min/max range
+    return Mathf.Clamp(adjustedInterval, minStepInterval, maxStepInterval);
+  }
+
+  void PlayFootstepClip()
+  {
+    AudioClip clipToPlay = playLeftNext ? leftFootClip : rightFootClip;
+    if (clipToPlay == null) return;
+
+    float volume = walkStepVolume;
+    if (IsSprinting) volume = sprintStepVolume;
+    if (IsCrouching) volume = crouchStepVolume;
+
+    audioSource.PlayOneShot(clipToPlay, volume);
+    playLeftNext = !playLeftNext;
+  }
+
+  void StopFootsteps()
+  {
+    footstepTimer = 0f;
   }
 }
