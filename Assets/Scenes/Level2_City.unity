@@ -3530,6 +3530,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &31820128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2108660721048869340, guid: 94a1a7d97f0484ed389cb8569ebcfe04, type: 3}
+  m_PrefabInstance: {fileID: 149335341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &33762676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14979,6 +14984,17 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &140599256 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6055293675199665669, guid: 94a1a7d97f0484ed389cb8569ebcfe04, type: 3}
+  m_PrefabInstance: {fileID: 149335341}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &140873067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136455,6 +136471,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3269712378897873312, guid: 28e726c26561a4f339b3421928858267, type: 3}
+      propertyPath: nextArrow
+      value: 
+      objectReference: {fileID: 1519358963}
+    - target: {fileID: 3269712378897873312, guid: 28e726c26561a4f339b3421928858267, type: 3}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 31820128}
+    - target: {fileID: 3269712378897873312, guid: 28e726c26561a4f339b3421928858267, type: 3}
+      propertyPath: dialogueText
+      value: 
+      objectReference: {fileID: 2030786571}
+    - target: {fileID: 3269712378897873312, guid: 28e726c26561a4f339b3421928858267, type: 3}
+      propertyPath: loopDialogue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269712378897873312, guid: 28e726c26561a4f339b3421928858267, type: 3}
+      propertyPath: previousArrow
+      value: 
+      objectReference: {fileID: 1608174320}
+    - target: {fileID: 3269712378897873312, guid: 28e726c26561a4f339b3421928858267, type: 3}
+      propertyPath: speakerNameText
+      value: 
+      objectReference: {fileID: 140599256}
+    - target: {fileID: 3269712378897873312, guid: 28e726c26561a4f339b3421928858267, type: 3}
+      propertyPath: playIntroOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269712378897873312, guid: 28e726c26561a4f339b3421928858267, type: 3}
+      propertyPath: dialogueLines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269712378897873312, guid: 28e726c26561a4f339b3421928858267, type: 3}
+      propertyPath: 'dialogueLines.Array.data[0]'
+      value: Oh wow, look at this car!
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -165182,6 +165234,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &1519358963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5215214887531578253, guid: 94a1a7d97f0484ed389cb8569ebcfe04, type: 3}
+  m_PrefabInstance: {fileID: 149335341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1519501983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -174850,6 +174907,11 @@ Transform:
   - {fileID: 617539252}
   m_Father: {fileID: 2142078324}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1608174320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8803105933892902344, guid: 94a1a7d97f0484ed389cb8569ebcfe04, type: 3}
+  m_PrefabInstance: {fileID: 149335341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1608788832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218765,6 +218827,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6744948774040422585, guid: f0fa6751ecba8a44b87f542ef29ff46f, type: 3}
   m_PrefabInstance: {fileID: 2030457112}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2030786571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4434122687303570255, guid: 94a1a7d97f0484ed389cb8569ebcfe04, type: 3}
+  m_PrefabInstance: {fileID: 149335341}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &2030788461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229597,6 +229670,7 @@ MonoBehaviour:
   interactDinstance: 3
   promptFadeBuffer: 0.2
   drivingText: {fileID: 1703916185}
+  carSounds: {fileID: 590914927}
 --- !u!1001 &2127308815
 PrefabInstance:
   m_ObjectHideFlags: 0

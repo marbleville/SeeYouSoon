@@ -1,10 +1,10 @@
-using NUnit.Framework;
 using UnityEngine;
 
 public class Prometheus : ADrivable
 {
     public bool IsDriven { get; private set; } = false;
     public GameObject drivingText;
+    public GameObject carSounds;
 
     private Vector3 playerOffset = new Vector3(0, 3, -5);
     private PrometeoCarController carController;
@@ -25,6 +25,7 @@ public class Prometheus : ADrivable
         base.Update();
         carController.enabled = IsDriven;
         carRb.isKinematic = !IsDriven;
+        carSounds.SetActive(IsDriven);
     }
 
     public override void OnDrive()

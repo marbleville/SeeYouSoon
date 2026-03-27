@@ -65,5 +65,10 @@ public abstract class AProximityPrompt : MonoBehaviour
     closestInstance.OnPromptInput();
   }
 
+  private void OnDestroy()
+  {
+    instances.Remove(this);
+  }
+
   public abstract void OnPromptInput();
 }
