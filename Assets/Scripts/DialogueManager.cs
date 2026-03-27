@@ -12,11 +12,11 @@ public class DialogueManager : MonoBehaviour
     public GameObject nextArrow;
     public GameObject previousArrow;
 
-    [Header("Opening Instructions")]
-    public string introSpeakerName = "Guide";
+    [Header("Dialogue Instructions")]
+    public string speakerName = "Guide";
 
     [TextArea(2, 5)]
-    public string[] introLines;
+    public string[] dialogueLines;
 
     [Header("Options")]
     public bool playIntroOnStart = false;
@@ -46,7 +46,7 @@ public class DialogueManager : MonoBehaviour
 
         if (playIntroOnStart)
         {
-            StartDialogue(introSpeakerName, introLines);
+            StartDialogue(speakerName, dialogueLines);
         }
     }
 
