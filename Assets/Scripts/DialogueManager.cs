@@ -20,6 +20,7 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Options")]
     public bool playIntroOnStart = false;
+    public bool loopDialogue = true;
 
     private string currentSpeaker;
     private string[] currentLines;
@@ -98,13 +99,23 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isDialogueActive) return;
 
-        currentLineIndex++;
-
-        if (currentLineIndex >= currentLines.Length)
+        if (currentLineIndex >= currentLines.Length - 1)
         {
-            currentLineIndex = 0;
+            if (loopDialogue)
+            {
+                currentLineIndex = 0;
+                ShowCurrentLine();
+                UpdateArrows();
+            }
+            else
+            {
+                EndDialogue();
+            }
+
+            return;
         }
 
+        currentLineIndex++;
         ShowCurrentLine();
         UpdateArrows();
     }
