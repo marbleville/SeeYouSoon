@@ -36,7 +36,7 @@ public abstract class AProximityPrompt : MonoBehaviour
 
   private void FadePrompt()
   {
-    if (playerDist > interactDinstance || playerDist < (interactDinstance * promptFadeBuffer)) return;
+    if (playerDist > interactDinstance + 1 || playerDist < (interactDinstance * promptFadeBuffer)) return;
 
     // If not first, fade to zero 
     float opacity = 0;

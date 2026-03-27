@@ -1,5 +1,3 @@
-using System.Linq;
-
 public abstract class AInteractable : AProximityPrompt
 {
   public override string PromptTag => "InteractPrompt";
