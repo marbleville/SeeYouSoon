@@ -286,28 +286,18 @@ MonoBehaviour:
   dialogueText: {fileID: 800683465}
   nextArrow: {fileID: 923676229}
   previousArrow: {fileID: 1189001313}
-  introSpeakerName: Guide
-  introLines:
-  - "Welcome to See You Soon.\nYou\u2019re racing across the city to reach the caf\xE9
-    before sunrise.\nUse the left and right arrow keys to navigate these messages."
-  - 'Each level brings you closer to your destination.
-
-    Follow clues, explore
-    the environment, and keep moving before time runs out.'
-  - 'You can interact with objects in the world.
-
-    When an object can be picked
-    up, a dialog prompt will appear.'
+  speakerName: Guide
+  dialogueLines:
+  - 'Welcome to See You Soon. Press the left and right arrow keys in order to move
+    through these instructions. '
+  - When an object can be picked up, a dialog prompt will appear.
   - Press E to pick up or drop items when prompted.
-  - 'Press ''P'' at any time to pause the game.
-
-    From the pause menu you can
-    restart the level or return to the main menu.
-
-    * Note that returning to the
-    main menu DOES NOT save your progress.'
-  - 'For the purpose of this project, pressing ''K'' will allow you to win the level,
-    and pressing ''L'' will allow you to lose the level. '
+  - During the levels, press ''P'' at any time to pause the game.
+  - From the pause menu you can restart the level or return to the main menu.
+  - '* Note that returning to the main menu DOES NOT save your progress*'
+  - 'For the purpose of this project, pressing ''''K'''' will allow you to win the
+    level, and pressing ''''L'''' will allow you to lose the level. '
+  - Good luck, and we hope to see you soon...
   playIntroOnStart: 0
 --- !u!4 &7374670
 Transform:
