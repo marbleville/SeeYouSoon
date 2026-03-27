@@ -67,7 +67,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(string speakerName, string[] lines)
     {
-        if (lines == null || lines.Length == 0) return;
+        if (lines == null || lines.Length == 0 || IsDialogueActive()) return;
 
         currentSpeaker = speakerName;
         currentLines = lines;
