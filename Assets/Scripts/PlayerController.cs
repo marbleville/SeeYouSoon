@@ -62,7 +62,7 @@ public class FPSPlayerController : MonoBehaviour
 
   void Update()
   {
-    if (DialogueManager.Instance.IsDialogueActive())
+    if (DialogueManager.Instance && DialogueManager.Instance.IsDialogueActive())
     {
       StopFootsteps();
       return;
@@ -84,7 +84,11 @@ public class FPSPlayerController : MonoBehaviour
     speed = targetSpeed;
 
     moveDirection.y -= gravity * Time.deltaTime;
-    controller.Move(speed * Time.deltaTime * moveDirection);
+
+    if (controller.enabled)
+    {
+      controller.Move(speed * Time.deltaTime * moveDirection);
+    }
 
     HandleFootsteps();
   }
