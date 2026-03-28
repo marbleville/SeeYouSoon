@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e346f2e4fc42249f9b70983c8f9f3778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  interactDinstance: 2
+  interactDistance: 2
   promptFadeBuffer: 0.2
 --- !u!1 &45927854
 GameObject:
@@ -6166,9 +6166,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 271443536}
-    - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 271443537}
   m_SourcePrefab: {fileID: 100100000, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
 --- !u!4 &271443532 stripped
 Transform:
@@ -6206,7 +6203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c3e57712cbf494aab00345c13dcdba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RiddleInteractable
-  interactDinstance: 2
+  interactDistance: 2
   promptFadeBuffer: 0.2
   riddleNumber: 2
   speakerName: You
@@ -6217,27 +6214,6 @@ MonoBehaviour:
   - '"Find the kitchen, just follow the sips."'
   - The kitchen is right across from the elevators.
   - I wanna get out of this building already, thankfully it seems we're almost done.
---- !u!114 &271443537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271443533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe907e4130684841995f5c645281758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
-  dialogueBox: {fileID: 272340801}
-  speakerNameText: {fileID: 1653258518}
-  dialogueText: {fileID: 337966487}
-  nextArrow: {fileID: 1872696930}
-  previousArrow: {fileID: 2123423092}
-  speakerName: You
-  dialogueLines: []
-  playIntroOnStart: 0
-  loopDialogue: 0
 --- !u!1 &272340801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3227268922990643187, guid: 61455a11c40e34115a0abb7155550340, type: 3}
@@ -7002,9 +6978,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 424969868}
-    - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 424969869}
   m_SourcePrefab: {fileID: 100100000, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
 --- !u!4 &424969864 stripped
 Transform:
@@ -7042,7 +7015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c3e57712cbf494aab00345c13dcdba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RiddleInteractable
-  interactDinstance: 3
+  interactDistance: 2
   promptFadeBuffer: 0.2
   riddleNumber: 0
   speakerName: You
@@ -7056,27 +7029,6 @@ MonoBehaviour:
   - Y'know what, why not. I have nothing better to do after work anyways.
   - The next clue seems to be near water.
   - I wonder who set this up...
---- !u!114 &424969869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 424969865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe907e4130684841995f5c645281758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
-  dialogueBox: {fileID: 272340801}
-  speakerNameText: {fileID: 1653258518}
-  dialogueText: {fileID: 337966487}
-  nextArrow: {fileID: 1872696930}
-  previousArrow: {fileID: 2123423092}
-  speakerName: You
-  dialogueLines: []
-  playIntroOnStart: 0
-  loopDialogue: 0
 --- !u!1 &438214842
 GameObject:
   m_ObjectHideFlags: 0
@@ -7451,7 +7403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60623381dacde1b4b904176b65155d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
-  interactDinstance: 2
+  interactDistance: 2
   promptFadeBuffer: 0.2
 --- !u!1 &512852298
 GameObject:
@@ -7623,7 +7575,7 @@ MonoBehaviour:
   speakerName: Guide
   dialogueLines: []
   playIntroOnStart: 1
-  loopDialogue: 1
+  loopDialogue: 0
 --- !u!4 &519226216
 Transform:
   m_ObjectHideFlags: 0
@@ -8067,7 +8019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbfc60dfd9cbe14aa9b3c9e09d0e5cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DocumentPickup
-  interactDinstance: 2
+  interactDistance: 2
   promptFadeBuffer: 0.2
   pickUpSFX: {fileID: 0}
 --- !u!54 &797690701
@@ -8265,7 +8217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60623381dacde1b4b904176b65155d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
-  interactDinstance: 2
+  interactDistance: 2
   promptFadeBuffer: 0.2
 --- !u!1 &886236922
 GameObject:
@@ -15373,7 +15325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60623381dacde1b4b904176b65155d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
-  interactDinstance: 2
+  interactDistance: 2
   promptFadeBuffer: 0.2
 --- !u!1 &1634015097
 GameObject:
@@ -17461,7 +17413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9da054ed2ac458ba7c58762332220a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  interactDinstance: 2
+  interactDistance: 2
   promptFadeBuffer: 0.2
   pickUpSFX: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
 --- !u!54 &1899364062
@@ -18050,7 +18002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60623381dacde1b4b904176b65155d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
-  interactDinstance: 2
+  interactDistance: 2
   promptFadeBuffer: 0.2
 --- !u!1 &2014774805
 GameObject:
@@ -18800,9 +18752,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2112958924}
-    - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2112958925}
   m_SourcePrefab: {fileID: 100100000, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
 --- !u!4 &2112958920 stripped
 Transform:
@@ -18852,34 +18801,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c3e57712cbf494aab00345c13dcdba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RiddleInteractable
-  interactDinstance: 2
+  interactDistance: 2
   promptFadeBuffer: 0.2
   riddleNumber: 3
   speakerName: You
   dialogueLines:
   - This is a placeholder for the final riddle.
   - Take one of the elevators outside this room to leave the building into the city.
---- !u!114 &2112958925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112958921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe907e4130684841995f5c645281758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
-  dialogueBox: {fileID: 272340801}
-  speakerNameText: {fileID: 1653258518}
-  dialogueText: {fileID: 337966487}
-  nextArrow: {fileID: 1872696930}
-  previousArrow: {fileID: 2123423092}
-  speakerName: You
-  dialogueLines: []
-  playIntroOnStart: 0
-  loopDialogue: 0
 --- !u!1 &2123423092 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1647321666740348294, guid: 61455a11c40e34115a0abb7155550340, type: 3}
@@ -19046,9 +18974,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3913495899705624382}
-    - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3913495899705624383}
   m_SourcePrefab: {fileID: 100100000, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
 --- !u!4 &3913495899705624376 stripped
 Transform:
@@ -19093,7 +19018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c3e57712cbf494aab00345c13dcdba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RiddleInteractable
-  interactDinstance: 2
+  interactDistance: 2
   promptFadeBuffer: 0.2
   riddleNumber: 1
   speakerName: You
@@ -19105,27 +19030,6 @@ MonoBehaviour:
   - '"Find the spiky table, then go seek the next either."'
   - Huh, this is probably talking about the rest area outside this room.
   - Let's take a left out this door and look for the next clue.
---- !u!114 &3913495899705624383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979874755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe907e4130684841995f5c645281758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
-  dialogueBox: {fileID: 272340801}
-  speakerNameText: {fileID: 1653258518}
-  dialogueText: {fileID: 337966487}
-  nextArrow: {fileID: 1872696930}
-  previousArrow: {fileID: 2123423092}
-  speakerName: You
-  dialogueLines: []
-  playIntroOnStart: 0
-  loopDialogue: 0
 --- !u!1001 &7323573019465130647
 PrefabInstance:
   m_ObjectHideFlags: 0
