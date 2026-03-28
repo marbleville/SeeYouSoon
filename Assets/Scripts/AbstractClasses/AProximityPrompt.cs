@@ -42,7 +42,7 @@ public abstract class AProximityPrompt : MonoBehaviour
     float opacity = 0;
 
     AProximityPrompt[] sortedInstances = instances.OrderBy(i => i.playerDist).ToArray();
-    if (this == sortedInstances[0])
+    if (this == sortedInstances[0] && !ShouldNotShowPrompt())
     {
       float bufferRatio = (interactDinstance - playerDist) / (interactDinstance * promptFadeBuffer);
       opacity = Mathf.Clamp(bufferRatio, 0f, 1f);
@@ -53,9 +53,14 @@ public abstract class AProximityPrompt : MonoBehaviour
     canvasGroup.alpha = opacity;
   }
 
+  private bool ShouldNotShowPrompt()
+  {
+    return playerDist > interactDinstance || debounceTimer > 0 || DialogueManager.Instance.IsDialogueActive();
+  }
+
   private void HandlePromptInput()
   {
-    if (playerDist > interactDinstance || !Input.GetKeyDown(KeyCode.E) || debounceTimer > 0) return;
+    if (ShouldNotShowPrompt() || !Input.GetKeyDown(KeyCode.E)) return;
 
     debounceTimer = debounceTime;
 
