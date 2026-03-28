@@ -6206,15 +6206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee042652491af84aaa7e08c83dae139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventDialogueTrigger
-  listenFor: 5
-  speakerName: You
-  dialogueLines:
-  - '"You''ve found the prickly friend, but don''t stop here,"'
-  - "\"Follow your nose \u2014 the answer is near.\""
-  - '"Where mugs are filled and coffee drips,"'
-  - "\"Find the kitchen brew room \u2014 just follow the sips.\""
-  - 'The kitchen is right across from the elevators. '
-  - I wanna get out of this building already, thankfully it seems we're almost there.
 --- !u!114 &271443536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6993,6 +6984,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 424969868}
+    - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 424969869}
   m_SourcePrefab: {fileID: 100100000, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
 --- !u!4 &424969864 stripped
 Transform:
@@ -7030,18 +7024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee042652491af84aaa7e08c83dae139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventDialogueTrigger
-  listenFor: 3
-  speakerName: You
-  dialogueLines:
-  - 'There seems to be a note left for me on the monitor. '
-  - "It reads: \u201CI stand and wait, both clear and cold,\" "
-  - '"A place where secrets are often told."'
-  - '"Thirsty minds come gather near,"'
-  - '"your next clue quietly rests here."'
-  - 'Huh, this seems to be a scavenger hunt. Y''know what, why not. '
-  - I have nothing better to do after work anyways.
-  - The next clue is definitely by water.
-  - I wonder who left this note...
 --- !u!114 &424969868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7054,7 +7036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c3e57712cbf494aab00345c13dcdba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RiddleInteractable
-  interactDinstance: 2
+  interactDinstance: 3
   promptFadeBuffer: 0.2
   riddleNumber: 0
   speakerName: You
@@ -7068,6 +7050,26 @@ MonoBehaviour:
   - Y'know what, why not. I have nothing better to do after work anyways.
   - The next clue seems to be near water.
   - I wonder who set this up...
+--- !u!114 &424969869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424969865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe907e4130684841995f5c645281758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
+  dialogueBox: {fileID: 272340801}
+  speakerNameText: {fileID: 1653258518}
+  dialogueText: {fileID: 337966487}
+  nextArrow: {fileID: 1872696930}
+  previousArrow: {fileID: 2123423092}
+  introSpeakerName: Guide
+  introLines: []
+  playIntroOnStart: 0
 --- !u!1 &438214842
 GameObject:
   m_ObjectHideFlags: 0
@@ -7578,10 +7580,12 @@ MonoBehaviour:
   dialogueText: {fileID: 337966487}
   nextArrow: {fileID: 1872696930}
   previousArrow: {fileID: 2123423092}
-  speakerName: Guide
-  dialogueLines: []
+  introSpeakerName: Guide
+  introLines:
+  - It's almost the end of your work day.
+  - 'You''re finishing up some paperwork. '
+  - Interact with the printer to retrieve your document and head back to your desk.
   playIntroOnStart: 0
-  loopDialogue: 1
 --- !u!4 &519226216
 Transform:
   m_ObjectHideFlags: 0
@@ -7911,7 +7915,6 @@ GameObject:
   - component: {fileID: 797690699}
   - component: {fileID: 797690698}
   - component: {fileID: 797690697}
-  - component: {fileID: 797690696}
   - component: {fileID: 797690700}
   m_Layer: 0
   m_Name: paper (1)
@@ -7935,21 +7938,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1650330605}
   m_LocalEulerAnglesHint: {x: -90, y: -49.59, z: -181.1}
---- !u!114 &797690696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797690694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b9da054ed2ac458ba7c58762332220a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupExample
-  interactDinstance: 2
-  promptFadeBuffer: 0.2
-  pickUpSFX: {fileID: 0}
 --- !u!65 &797690697
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14696,6 +14684,34 @@ RectTransform:
   m_AnchoredPosition: {x: 175, y: -20}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 1}
+--- !u!1 &1542046418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 273024717800804903, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+  m_PrefabInstance: {fileID: 1650330604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1542046419
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542046418}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.003
+  m_Height: 0.02
+  m_Direction: 2
+  m_Center: {x: -0.0000000020954758, y: 0.00056152645, z: 0.0080118}
 --- !u!1 &1546591513
 GameObject:
   m_ObjectHideFlags: 0
@@ -15812,6 +15828,14 @@ PrefabInstance:
       propertyPath: m_Shadows.m_Type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3680161137373968347, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01167
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680161137373968347, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.11134
+      objectReference: {fileID: 0}
     - target: {fileID: 3700927224813835034, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       propertyPath: m_Shadows.m_Type
       value: 0
@@ -16200,6 +16224,14 @@ PrefabInstance:
       propertyPath: m_Shadows.m_Type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6636448561439793301, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00805
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636448561439793301, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.15083
+      objectReference: {fileID: 0}
     - target: {fileID: 6666394814943081163, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       propertyPath: m_Shadows.m_Type
       value: 0
@@ -16506,15 +16538,30 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1324945687}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 273024717800804903, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1542046419}
     - targetCorrespondingSourceObject: {fileID: 28106855764108034, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1650330609}
     - targetCorrespondingSourceObject: {fileID: 3242298647171520162, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1811458663}
+    - targetCorrespondingSourceObject: {fileID: 3242298647171520162, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1811458665}
+    - targetCorrespondingSourceObject: {fileID: 3242298647171520162, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1811458668}
     - targetCorrespondingSourceObject: {fileID: 7271873223295464741, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1811458662}
+    - targetCorrespondingSourceObject: {fileID: 7271873223295464741, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1811458664}
+    - targetCorrespondingSourceObject: {fileID: 7271873223295464741, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1811458667}
   m_SourcePrefab: {fileID: 100100000, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
 --- !u!4 &1650330605 stripped
 Transform:
@@ -16906,6 +16953,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ParticleListener
   listenFor: 6
   stopOn: 0
+--- !u!114 &1811458664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811458659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60623381dacde1b4b904176b65155d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
+  interactDinstance: 10000
+  promptFadeBuffer: 0.2
+--- !u!114 &1811458665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811458661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60623381dacde1b4b904176b65155d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
+  interactDinstance: 100
+  promptFadeBuffer: 0.2
+--- !u!65 &1811458667
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811458659}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.021112615, y: 0.01, z: 0.2527325}
+  m_Center: {x: 0.0012818305, y: 0.0038893423, z: 0.05591578}
+--- !u!65 &1811458668
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811458661}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.021112615, y: 0.0043773376, z: 0.2527325}
+  m_Center: {x: 0.0012818314, y: 0.0038893418, z: 0.055915788}
 --- !u!1 &1865469202
 GameObject:
   m_ObjectHideFlags: 0
@@ -18591,11 +18708,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee042652491af84aaa7e08c83dae139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventDialogueTrigger
-  listenFor: 6
-  speakerName: You
-  dialogueLines:
-  - 'This is a placeholder for the final clue. '
-  - Take the elevator to exit the building into the city.
 --- !u!114 &2112958924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18608,7 +18720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c3e57712cbf494aab00345c13dcdba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RiddleInteractable
-  interactDinstance: 2
+  interactDinstance: 1
   promptFadeBuffer: 0.2
   riddleNumber: 3
   speakerName: You
@@ -18791,15 +18903,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee042652491af84aaa7e08c83dae139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventDialogueTrigger
-  listenFor: 4
-  speakerName: You
-  dialogueLines:
-  - '"Just outside the office, three tables in a row,"'
-  - '"A prickly cactus stealing the show."'
-  - '"Where colleagues pause and take a quick breather,"'
-  - "\"Find the spiky table \u2014 then go seek the next either.\" "
-  - This seems to be talking about the resting area outside this room.
-  - Let's take a left out this door and look for the next clue.
 --- !u!114 &3913495899705624382
 MonoBehaviour:
   m_ObjectHideFlags: 0

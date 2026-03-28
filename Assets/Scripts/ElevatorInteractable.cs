@@ -2,11 +2,24 @@ using UnityEngine;
 
 public class ElevatorInteractable : AInteractable
 {
+
+    new void Start()
+    {
+        base.Start();
+    }
+
+  // Update is called once per frame
+    new void Update()
+    {
+        base.Update();
+    }
     public override void OnInteract()
     {
-        if (ElevatorController.Instance)
+        LevelManager levelManager = FindFirstObjectByType<LevelManager>();
+        if (levelManager)
         {
-            ElevatorController.Instance.TriggerElevator();
+            levelManager.HandleLevelWin();
+            levelManager.LoadNextLevel();
         }
     }
 }
