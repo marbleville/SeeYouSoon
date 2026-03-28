@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class AProximityPrompt : MonoBehaviour
 {
-  public float interactDinstance = 2;
+  public float interactDistance = 2;
   [Range(0, 1)]
   public float promptFadeBuffer = 0.2f;
 
@@ -36,7 +36,7 @@ public abstract class AProximityPrompt : MonoBehaviour
 
   private void FadePrompt()
   {
-    if (playerDist > interactDinstance + 1 || playerDist < (interactDinstance * promptFadeBuffer)) return;
+    if (playerDist > interactDistance + 1 || playerDist < (interactDistance * promptFadeBuffer)) return;
 
     // If not first, fade to zero 
     float opacity = 0;
@@ -44,7 +44,7 @@ public abstract class AProximityPrompt : MonoBehaviour
     AProximityPrompt[] sortedInstances = instances.OrderBy(i => i.playerDist).ToArray();
     if (this == sortedInstances[0] && !ShouldNotShowPrompt())
     {
-      float bufferRatio = (interactDinstance - playerDist) / (interactDinstance * promptFadeBuffer);
+      float bufferRatio = (interactDistance - playerDist) / (interactDistance * promptFadeBuffer);
       opacity = Mathf.Clamp(bufferRatio, 0f, 1f);
     }
 
@@ -55,7 +55,7 @@ public abstract class AProximityPrompt : MonoBehaviour
 
   private bool ShouldNotShowPrompt()
   {
-    return playerDist > interactDinstance || debounceTimer > 0 || DialogueManager.Instance.IsDialogueActive();
+    return playerDist > interactDistance || debounceTimer > 0 || DialogueManager.Instance.IsDialogueActive();
   }
 
   private void HandlePromptInput()

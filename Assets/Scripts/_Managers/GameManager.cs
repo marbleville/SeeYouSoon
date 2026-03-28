@@ -14,10 +14,10 @@ public class GameManager : MonoBehaviour
     private string homeSceneName = "Level0_Home";
     [SerializeField] 
     private string firstLevelSceneName = "Level1_Office";
-    [SerializeField] 
-    private string secondLevelSceneName = "Level2_City";
-    [SerializeField] 
-    private string thirdLevelSceneName = "Level3_Cafe";
+    // [SerializeField] 
+    // private string secondLevelSceneName = "Level2_City";
+    // [SerializeField] 
+    // private string thirdLevelSceneName = "Level3_Cafe";
 
     public float RemainingTime { get; private set; }
     public bool IsPaused { get; private set; }

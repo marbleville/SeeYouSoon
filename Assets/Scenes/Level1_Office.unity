@@ -6165,10 +6165,10 @@ PrefabInstance:
       addedObject: {fileID: 271443534}
     - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 271443535}
+      addedObject: {fileID: 271443536}
     - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 271443536}
+      addedObject: {fileID: 271443537}
   m_SourcePrefab: {fileID: 100100000, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
 --- !u!4 &271443532 stripped
 Transform:
@@ -6194,18 +6194,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ParticleListener
   listenFor: 4
   stopOn: 5
---- !u!114 &271443535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271443533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee042652491af84aaa7e08c83dae139, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EventDialogueTrigger
 --- !u!114 &271443536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6229,6 +6217,27 @@ MonoBehaviour:
   - '"Find the kitchen, just follow the sips."'
   - The kitchen is right across from the elevators.
   - I wanna get out of this building already, thankfully it seems we're almost done.
+--- !u!114 &271443537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271443533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe907e4130684841995f5c645281758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
+  dialogueBox: {fileID: 272340801}
+  speakerNameText: {fileID: 1653258518}
+  dialogueText: {fileID: 337966487}
+  nextArrow: {fileID: 1872696930}
+  previousArrow: {fileID: 2123423092}
+  speakerName: You
+  dialogueLines: []
+  playIntroOnStart: 0
+  loopDialogue: 0
 --- !u!1 &272340801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3227268922990643187, guid: 61455a11c40e34115a0abb7155550340, type: 3}
@@ -6932,16 +6941,28 @@ PrefabInstance:
       value: Note
       objectReference: {fileID: 0}
     - target: {fileID: 5073094441805146112, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.000099999976
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073094441805146112, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073094441805146112, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0009999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073094441805146112, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0017
+      value: -0.0016999998
       objectReference: {fileID: 0}
     - target: {fileID: 5073094441805146112, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00217
+      value: 0.0021200008
       objectReference: {fileID: 0}
     - target: {fileID: 5073094441805146112, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.01267
+      value: 0.012669998
       objectReference: {fileID: 0}
     - target: {fileID: 5073094441805146112, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6949,15 +6970,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5073094441805146112, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.03386402
+      value: 0.033863995
       objectReference: {fileID: 0}
     - target: {fileID: 5073094441805146112, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.03386402
+      value: 0.033864025
       objectReference: {fileID: 0}
     - target: {fileID: 5073094441805146112, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.70629543
+      value: 0.7062955
       objectReference: {fileID: 0}
     - target: {fileID: 5073094441805146112, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6978,9 +6999,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 424969866}
-    - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 424969867}
     - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 424969868}
@@ -7012,18 +7030,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ParticleListener
   listenFor: 2
   stopOn: 3
---- !u!114 &424969867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 424969865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee042652491af84aaa7e08c83dae139, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EventDialogueTrigger
 --- !u!114 &424969868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7067,10 +7073,10 @@ MonoBehaviour:
   dialogueText: {fileID: 337966487}
   nextArrow: {fileID: 1872696930}
   previousArrow: {fileID: 2123423092}
-  speakerName: Guide
+  speakerName: You
   dialogueLines: []
   playIntroOnStart: 0
-  loopDialogue: 1
+  loopDialogue: 0
 --- !u!1 &438214842
 GameObject:
   m_ObjectHideFlags: 0
@@ -7414,6 +7420,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505115811}
   m_CullTransparentMesh: 1
+--- !u!1 &507667653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4949694432905154195, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+  m_PrefabInstance: {fileID: 1650330604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &507667655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507667653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f7a4ac537cf1b46bfb2dd9c9582b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticleListener
+  listenFor: 6
+  stopOn: 0
+--- !u!114 &507667656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507667653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60623381dacde1b4b904176b65155d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
+  interactDinstance: 2
+  promptFadeBuffer: 0.2
 --- !u!1 &512852298
 GameObject:
   m_ObjectHideFlags: 0
@@ -7583,8 +7622,8 @@ MonoBehaviour:
   previousArrow: {fileID: 2123423092}
   speakerName: Guide
   dialogueLines: []
-  playIntroOnStart: 0
-  loopDialogue: 0
+  playIntroOnStart: 1
+  loopDialogue: 1
 --- !u!4 &519226216
 Transform:
   m_ObjectHideFlags: 0
@@ -8195,6 +8234,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808692107}
   m_CullTransparentMesh: 1
+--- !u!1 &824373607 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5313058305934078634, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+  m_PrefabInstance: {fileID: 1650330604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &824373610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824373607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f7a4ac537cf1b46bfb2dd9c9582b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticleListener
+  listenFor: 6
+  stopOn: 0
+--- !u!114 &824373611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824373607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60623381dacde1b4b904176b65155d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
+  interactDinstance: 2
+  promptFadeBuffer: 0.2
 --- !u!1 &886236922
 GameObject:
   m_ObjectHideFlags: 0
@@ -15270,6 +15342,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1624688978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 546028756881237125, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+  m_PrefabInstance: {fileID: 1650330604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1624688980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624688978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f7a4ac537cf1b46bfb2dd9c9582b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticleListener
+  listenFor: 6
+  stopOn: 0
+--- !u!114 &1624688981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624688978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60623381dacde1b4b904176b65155d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
+  interactDinstance: 2
+  promptFadeBuffer: 0.2
 --- !u!1 &1634015097
 GameObject:
   m_ObjectHideFlags: 0
@@ -15856,6 +15961,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3680161137373968347, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00013
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680161137373968347, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.01167
       objectReference: {fileID: 0}
@@ -16252,6 +16361,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6636448561439793301, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00214
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636448561439793301, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.00805
       objectReference: {fileID: 0}
@@ -16571,21 +16684,33 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 28106855764108034, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1650330609}
-    - targetCorrespondingSourceObject: {fileID: 3242298647171520162, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 8899541547561546932, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1811458663}
-    - targetCorrespondingSourceObject: {fileID: 3242298647171520162, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      addedObject: {fileID: 1995788080}
+    - targetCorrespondingSourceObject: {fileID: 8899541547561546932, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1811458665}
+      addedObject: {fileID: 1995788079}
+    - targetCorrespondingSourceObject: {fileID: 4949694432905154195, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 507667656}
+    - targetCorrespondingSourceObject: {fileID: 4949694432905154195, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 507667655}
     - targetCorrespondingSourceObject: {fileID: 3242298647171520162, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1811458668}
-    - targetCorrespondingSourceObject: {fileID: 7271873223295464741, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 5313058305934078634, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1811458662}
-    - targetCorrespondingSourceObject: {fileID: 7271873223295464741, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      addedObject: {fileID: 824373611}
+    - targetCorrespondingSourceObject: {fileID: 5313058305934078634, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1811458664}
+      addedObject: {fileID: 824373610}
+    - targetCorrespondingSourceObject: {fileID: 546028756881237125, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1624688981}
+    - targetCorrespondingSourceObject: {fileID: 546028756881237125, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1624688980}
     - targetCorrespondingSourceObject: {fileID: 7271873223295464741, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1811458667}
@@ -16952,62 +17077,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3242298647171520162, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
   m_PrefabInstance: {fileID: 1650330604}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1811458662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811458659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f7a4ac537cf1b46bfb2dd9c9582b13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ParticleListener
-  listenFor: 6
-  stopOn: 0
---- !u!114 &1811458663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811458661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f7a4ac537cf1b46bfb2dd9c9582b13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ParticleListener
-  listenFor: 6
-  stopOn: 0
---- !u!114 &1811458664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811458659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60623381dacde1b4b904176b65155d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
-  interactDinstance: 10000
-  promptFadeBuffer: 0.2
---- !u!114 &1811458665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811458661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60623381dacde1b4b904176b65155d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
-  interactDinstance: 100
-  promptFadeBuffer: 0.2
 --- !u!65 &1811458667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17950,6 +18019,39 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
   m_PrefabInstance: {fileID: 3913495899705624375}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1995788076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8899541547561546932, guid: 8f0a3ace6f82e471cb326d1d2644ced2, type: 3}
+  m_PrefabInstance: {fileID: 1650330604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1995788079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995788076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f7a4ac537cf1b46bfb2dd9c9582b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticleListener
+  listenFor: 6
+  stopOn: 0
+--- !u!114 &1995788080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995788076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60623381dacde1b4b904176b65155d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
+  interactDinstance: 2
+  promptFadeBuffer: 0.2
 --- !u!1 &2014774805
 GameObject:
   m_ObjectHideFlags: 0
@@ -18698,6 +18800,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2112958924}
+    - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2112958925}
   m_SourcePrefab: {fileID: 100100000, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
 --- !u!4 &2112958920 stripped
 Transform:
@@ -18747,13 +18852,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c3e57712cbf494aab00345c13dcdba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RiddleInteractable
-  interactDinstance: 1
+  interactDinstance: 2
   promptFadeBuffer: 0.2
   riddleNumber: 3
   speakerName: You
   dialogueLines:
   - This is a placeholder for the final riddle.
   - Take one of the elevators outside this room to leave the building into the city.
+--- !u!114 &2112958925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112958921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe907e4130684841995f5c645281758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
+  dialogueBox: {fileID: 272340801}
+  speakerNameText: {fileID: 1653258518}
+  dialogueText: {fileID: 337966487}
+  nextArrow: {fileID: 1872696930}
+  previousArrow: {fileID: 2123423092}
+  speakerName: You
+  dialogueLines: []
+  playIntroOnStart: 0
+  loopDialogue: 0
 --- !u!1 &2123423092 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1647321666740348294, guid: 61455a11c40e34115a0abb7155550340, type: 3}
@@ -18920,6 +19046,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3913495899705624382}
+    - targetCorrespondingSourceObject: {fileID: 4081693842512604953, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3913495899705624383}
   m_SourcePrefab: {fileID: 100100000, guid: 9834abe2156f220498dc60d430e51d78, type: 3}
 --- !u!4 &3913495899705624376 stripped
 Transform:
@@ -18976,6 +19105,27 @@ MonoBehaviour:
   - '"Find the spiky table, then go seek the next either."'
   - Huh, this is probably talking about the rest area outside this room.
   - Let's take a left out this door and look for the next clue.
+--- !u!114 &3913495899705624383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979874755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe907e4130684841995f5c645281758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
+  dialogueBox: {fileID: 272340801}
+  speakerNameText: {fileID: 1653258518}
+  dialogueText: {fileID: 337966487}
+  nextArrow: {fileID: 1872696930}
+  previousArrow: {fileID: 2123423092}
+  speakerName: You
+  dialogueLines: []
+  playIntroOnStart: 0
+  loopDialogue: 0
 --- !u!1001 &7323573019465130647
 PrefabInstance:
   m_ObjectHideFlags: 0

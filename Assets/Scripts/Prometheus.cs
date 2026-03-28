@@ -36,13 +36,13 @@ public class Prometheus : ADrivable
         {
             EnablePlayer();
             IsDriven = !IsDriven;
-            interactDinstance = 2;
+            interactDistance = 2;
         }
         else
         {
             DisablePlayer();
             IsDriven = !IsDriven;
-            interactDinstance = 10;
+            interactDistance = 10;
         }
     }
 
