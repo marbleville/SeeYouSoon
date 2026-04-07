@@ -46,7 +46,7 @@ public class ParticleListener : MonoBehaviour
 
     void StopParticles()
     {
-        if (particles)
+        if (particles) 
             particles.Stop();
     }
 

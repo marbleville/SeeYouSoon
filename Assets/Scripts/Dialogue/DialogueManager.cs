@@ -35,7 +35,8 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Debug.LogWarning("Duplicate DialogueManager found. Removing duplicate component.", this);
+            Destroy(this);
         }
     }
 
