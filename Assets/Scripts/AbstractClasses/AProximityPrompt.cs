@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,12 +9,14 @@ public abstract class AProximityPrompt : MonoBehaviour
   public float promptFadeBuffer = 0.2f;
 
   public abstract string PromptTag { get; }
+  protected virtual int InputPriority => 0;
 
   private GameObject player;
   private float playerDist;
   private static List<AProximityPrompt> instances = new List<AProximityPrompt>();
   private readonly float debounceTime = 0.1f;
-  private float debounceTimer = 0;
+  private static float inputDebounceTimer = 0;
+  private static int lastConsumedInputFrame = -1;
 
   public void Start()
   {
@@ -23,12 +24,26 @@ public abstract class AProximityPrompt : MonoBehaviour
 
     if (!player) Debug.Log("No player found.");
 
-    instances.Add(this);
+    if (!instances.Contains(this))
+    {
+      instances.Add(this);
+    }
+  }
+
+  private void OnEnable()
+  {
+    if (!instances.Contains(this))
+    {
+      instances.Add(this);
+    }
   }
 
   public void Update()
   {
-    debounceTimer = Mathf.Clamp(debounceTimer - Time.deltaTime, -0.1f, debounceTime);
+    inputDebounceTimer = Mathf.Clamp(inputDebounceTimer - Time.deltaTime, -0.1f, debounceTime);
+
+    if (!player) return;
+
     playerDist = Vector3.Distance(transform.position, player.transform.position);
     FadePrompt();
     HandlePromptInput();
@@ -36,38 +51,138 @@ public abstract class AProximityPrompt : MonoBehaviour
 
   private void FadePrompt()
   {
-    if (playerDist > interactDinstance + 1 || playerDist < (interactDinstance * promptFadeBuffer)) return;
+    GameObject interactPromptObject = GameObject.FindGameObjectWithTag(PromptTag);
+    if (!interactPromptObject) return;
 
-    // If not first, fade to zero 
+    CanvasGroup canvasGroup = interactPromptObject.GetComponent<CanvasGroup>();
+    if (!canvasGroup) return;
+
+    // Avoid multiple instances fighting over the same prompt canvas alpha.
+    AProximityPrompt closestForTag = GetClosestInstanceForPromptTag();
+    if (closestForTag != this) return;
+
     float opacity = 0;
-
-    AProximityPrompt[] sortedInstances = instances.OrderBy(i => i.playerDist).ToArray();
-    if (this == sortedInstances[0] && !ShouldNotShowPrompt())
+    if (!ShouldNotShowPrompt())
     {
-      float bufferRatio = (interactDinstance - playerDist) / (interactDinstance * promptFadeBuffer);
-      opacity = Mathf.Clamp(bufferRatio, 0f, 1f);
+      float fadeRange = interactDinstance * Mathf.Max(promptFadeBuffer, 0.0001f);
+      float startFadeAt = interactDinstance - fadeRange;
+
+      // Full opacity when close; fade only near the outer interaction boundary.
+      if (playerDist <= startFadeAt)
+      {
+        opacity = 1f;
+      }
+      else
+      {
+        float bufferRatio = (interactDinstance - playerDist) / fadeRange;
+        opacity = Mathf.Clamp(bufferRatio, 0f, 1f);
+      }
     }
 
-    GameObject interactPromptObject = GameObject.FindGameObjectWithTag(PromptTag);
-    CanvasGroup canvasGroup = interactPromptObject.GetComponent<CanvasGroup>();
     canvasGroup.alpha = opacity;
   }
 
   private bool ShouldNotShowPrompt()
   {
-    return playerDist > interactDinstance || debounceTimer > 0 || DialogueManager.Instance.IsDialogueActive();
+    bool isDialogueActive = DialogueManager.Instance && DialogueManager.Instance.IsDialogueActive();
+    return playerDist > interactDinstance || inputDebounceTimer > 0 || isDialogueActive;
   }
 
   private void HandlePromptInput()
   {
-    if (ShouldNotShowPrompt() || !Input.GetKeyDown(KeyCode.E)) return;
+    if (!Input.GetKeyDown(KeyCode.E)) return;
+    if (lastConsumedInputFrame == Time.frameCount) return;
 
-    debounceTimer = debounceTime;
+    bool isDialogueActive = DialogueManager.Instance && DialogueManager.Instance.IsDialogueActive();
+    if (isDialogueActive || inputDebounceTimer > 0) return;
 
-    AProximityPrompt[] sortedInstances = instances.OrderBy(i => i.playerDist).ToArray();
-    AProximityPrompt closestInstance = sortedInstances[0];
+    AProximityPrompt nextPrompt = GetInputTargetFromVisiblePrompt();
+    if (nextPrompt == null) return;
 
-    closestInstance.OnPromptInput();
+    lastConsumedInputFrame = Time.frameCount;
+    inputDebounceTimer = debounceTime;
+    nextPrompt.OnPromptInput();
+  }
+
+  private AProximityPrompt GetClosestInstanceForPromptTag()
+  {
+    return instances
+      .Where(i =>
+        i != null &&
+        i.isActiveAndEnabled &&
+        i.gameObject.activeInHierarchy &&
+        i.player != null &&
+        i.PromptTag == PromptTag)
+      .OrderBy(i => i.playerDist)
+      .FirstOrDefault();
+  }
+
+  private AProximityPrompt GetInputTargetFromVisiblePrompt()
+  {
+    AProximityPrompt heldPickup = instances
+      .Where(i =>
+        i != null &&
+        i.isActiveAndEnabled &&
+        i.gameObject.activeInHierarchy &&
+        i.player != null &&
+        i.playerDist <= i.interactDinstance)
+      .OfType<APickupable>()
+      .Where(p => p.IsHolding)
+      .OrderBy(p => p.playerDist)
+      .FirstOrDefault();
+    if (heldPickup != null) return heldPickup;
+
+    var visibleTargets = instances
+      .Where(i =>
+        i != null &&
+        i.isActiveAndEnabled &&
+        i.gameObject.activeInHierarchy &&
+        i.player != null &&
+        i.playerDist <= i.interactDinstance)
+      .GroupBy(i => i.PromptTag)
+      .Select(group =>
+      {
+        AProximityPrompt closest = group.OrderBy(i => i.playerDist).FirstOrDefault();
+        return new
+        {
+          Closest = closest,
+          Alpha = GetPromptAlpha(group.Key)
+        };
+      })
+      .Where(x => x.Closest != null && x.Alpha > 0.01f)
+      .OrderByDescending(x => x.Alpha)
+      .ThenBy(x => x.Closest.playerDist)
+      .Select(x => x.Closest)
+      .FirstOrDefault();
+
+    if (visibleTargets != null) return visibleTargets;
+
+    return instances
+      .Where(i =>
+        i != null &&
+        i.isActiveAndEnabled &&
+        i.gameObject.activeInHierarchy &&
+        i.player != null &&
+        i.playerDist <= i.interactDinstance)
+      .OrderByDescending(i => i.InputPriority)
+      .ThenBy(i => i.playerDist)
+      .FirstOrDefault();
+  }
+
+  private float GetPromptAlpha(string promptTag)
+  {
+    GameObject promptObject = GameObject.FindGameObjectWithTag(promptTag);
+    if (!promptObject) return 0f;
+
+    CanvasGroup canvasGroup = promptObject.GetComponent<CanvasGroup>();
+    if (!canvasGroup) return 0f;
+
+    return canvasGroup.alpha;
+  }
+
+  private void OnDisable()
+  {
+    instances.Remove(this);
   }
 
   private void OnDestroy()

@@ -10,9 +10,12 @@ public class RiddleInteractable : AInteractable
     [TextArea(2, 5)]
     public string[] dialogueLines;
 
+    private DialogueManager localDialogueManager;
+
     new void Start()
     {
         base.Start();
+        localDialogueManager = GetComponent<DialogueManager>();
     }
 
     new void Update()
@@ -22,8 +25,21 @@ public class RiddleInteractable : AInteractable
 
     public override void OnInteract()
     {
-        if (DialogueManager.Instance && dialogueLines != null)
-            DialogueManager.Instance.StartDialogue(speakerName, dialogueLines);
+        if (DialogueManager.Instance)
+        {
+            string resolvedSpeaker = speakerName;
+            string[] resolvedLines = dialogueLines;
+
+            if ((resolvedLines == null || resolvedLines.Length == 0) && localDialogueManager != null)
+            {
+                resolvedSpeaker = string.IsNullOrWhiteSpace(localDialogueManager.speakerName)
+                    ? resolvedSpeaker
+                    : localDialogueManager.speakerName;
+                resolvedLines = localDialogueManager.dialogueLines;
+            }
+
+            DialogueManager.Instance.StartDialogue(resolvedSpeaker, resolvedLines);
+        }
 
         switch (riddleNumber)
         {
