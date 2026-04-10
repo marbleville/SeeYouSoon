@@ -18980,6 +18980,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueBox
       objectReference: {fileID: 0}
+    - target: {fileID: 3227268922990643187, guid: 61455a11c40e34115a0abb7155550340, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7252580793380933591, guid: 61455a11c40e34115a0abb7155550340, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -19006,7 +19010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7252580793380933591, guid: 61455a11c40e34115a0abb7155550340, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1400
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 7252580793380933591, guid: 61455a11c40e34115a0abb7155550340, type: 3}
       propertyPath: m_SizeDelta.y
