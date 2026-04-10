@@ -1,10 +1,14 @@
 using UnityEngine;
+using TMPro;
 
 public class Prometheus : ADrivable
 {
     public bool IsDriven { get; private set; } = false;
     public GameObject drivingText;
     public GameObject carSounds;
+    [SerializeField] private TMP_Text drivePromptText;
+    [SerializeField] private string enterCarPrompt = "Press E to Drive";
+    [SerializeField] private string exitCarPrompt = "Press E to Exit Car";
 
     private Vector3 playerOffset = new Vector3(0, 3, -5);
     private PrometeoCarController carController;
@@ -26,6 +30,7 @@ public class Prometheus : ADrivable
         carController.enabled = IsDriven;
         carRb.isKinematic = !IsDriven;
         carSounds.SetActive(IsDriven);
+        UpdateDrivePromptText();
     }
 
     public override void OnDrive()
@@ -44,6 +49,8 @@ public class Prometheus : ADrivable
             IsDriven = !IsDriven;
             interactDinstance = 10;
         }
+
+        UpdateDrivePromptText();
     }
 
     private void DisablePlayer()
@@ -98,5 +105,26 @@ public class Prometheus : ADrivable
 
         controller.enabled = true;
         collider.enabled = true;
+    }
+
+    private void UpdateDrivePromptText()
+    {
+        if (drivePromptText == null)
+        {
+            GameObject drivePromptObject = GameObject.FindGameObjectWithTag("DrivePrompt");
+            if (drivePromptObject != null)
+            {
+                drivePromptText = drivePromptObject.GetComponentInChildren<TMP_Text>();
+            }
+        }
+
+        if (drivePromptText == null && drivingText != null)
+        {
+            drivePromptText = drivingText.GetComponentInChildren<TMP_Text>();
+        }
+
+        if (drivePromptText == null) return;
+
+        drivePromptText.text = IsDriven ? exitCarPrompt : enterCarPrompt;
     }
 }
