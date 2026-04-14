@@ -10,6 +10,8 @@ public class HomeUIManager : MonoBehaviour
     private GameObject instructionsPanel;
     [SerializeField] 
     private GameObject settingsPanel;
+    [SerializeField] 
+    private GameObject teamPanel;
 
     [Header("Instructions Dialogue")]
     [SerializeField] 
@@ -40,6 +42,7 @@ public class HomeUIManager : MonoBehaviour
         mainMenuPanel.SetActive(true);
         instructionsPanel.SetActive(false);
         settingsPanel.SetActive(false);
+        teamPanel.SetActive(false);
 
         if (instructionsDialogueManager != null)
         {
@@ -52,6 +55,7 @@ public class HomeUIManager : MonoBehaviour
         mainMenuPanel.SetActive(false);
         instructionsPanel.SetActive(true);
         settingsPanel.SetActive(false);
+        teamPanel.SetActive(false);
 
         if (instructionsDialogueManager != null)
         {
@@ -67,10 +71,19 @@ public class HomeUIManager : MonoBehaviour
         mainMenuPanel.SetActive(false);
         instructionsPanel.SetActive(false);
         settingsPanel.SetActive(true);
+        teamPanel.SetActive(false);
 
         if (instructionsDialogueManager != null)
         {
             instructionsDialogueManager.EndDialogue();
         }
+    }
+
+    public void ShowTeam()
+    {
+        mainMenuPanel.SetActive(false);
+        instructionsPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        teamPanel.SetActive(true);
     }
 }
