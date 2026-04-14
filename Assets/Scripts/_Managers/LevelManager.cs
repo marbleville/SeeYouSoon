@@ -26,14 +26,14 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        HideAllMenus();
+        LockCursorForGameplay();
+        SetGameplayScriptsEnabled(true);
+
         if (GameManager.Instance != null)
         {
             GameManager.Instance.RegisterLevelStart();
         }
-
-        HideAllMenus();
-        LockCursorForGameplay();
-        SetGameplayScriptsEnabled(true);
     }
 
     private void Update()
@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour
         if (levelEnded)
             return;
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (pauseSettingsPanel != null && !pauseSettingsPanel.activeSelf)
             {
@@ -179,7 +179,7 @@ public class LevelManager : MonoBehaviour
 
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.PauseGame();
+            GameManager.Instance.PauseGameWithoutSaving();
         }
     }
 
@@ -193,7 +193,11 @@ public class LevelManager : MonoBehaviour
 
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.PauseGame();
+            GameManager.Instance.PauseGameWithoutSaving();
+            if (isFinalLevel)
+            {
+                GameManager.Instance.ClearSavedProgress();
+            }
         }
 
         if (isFinalLevel)

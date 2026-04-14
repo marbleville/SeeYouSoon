@@ -12,6 +12,8 @@ public class HomeUIManager : MonoBehaviour
     private GameObject settingsPanel;
     [SerializeField] 
     private GameObject teamPanel;
+    [SerializeField]
+    private GameObject continueButton;
 
     [Header("Instructions Dialogue")]
     [SerializeField] 
@@ -29,12 +31,38 @@ public class HomeUIManager : MonoBehaviour
 
     public void StartGame()
     {
-        if (GameManager.Instance != null)
+        if (GameManager.Instance == null)
         {
-            GameManager.Instance.StartNewGame();
+            SceneManager.LoadScene(firstLevelSceneName);
+            return;
         }
 
+        if (GameManager.Instance.HasSavedProgress())
+        {
+            GameManager.Instance.ContinueFromSavedProgress();
+            return;
+        }
+
+        GameManager.Instance.StartNewGame();
         SceneManager.LoadScene(firstLevelSceneName);
+    }
+
+    public void ContinueGame()
+    {
+        if (GameManager.Instance == null)
+        {
+            SceneManager.LoadScene(firstLevelSceneName);
+            return;
+        }
+
+        if (GameManager.Instance.HasSavedProgress())
+        {
+            GameManager.Instance.ContinueFromSavedProgress();
+        }
+        else
+        {
+            StartGame();
+        }
     }
 
     public void ShowMainMenu()
@@ -43,6 +71,11 @@ public class HomeUIManager : MonoBehaviour
         instructionsPanel.SetActive(false);
         settingsPanel.SetActive(false);
         teamPanel.SetActive(false);
+
+        if (continueButton != null && GameManager.Instance != null)
+        {
+            continueButton.SetActive(GameManager.Instance.HasSavedProgress());
+        }
 
         if (instructionsDialogueManager != null)
         {
