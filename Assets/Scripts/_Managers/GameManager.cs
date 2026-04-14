@@ -135,7 +135,10 @@ public class GameManager : MonoBehaviour
 
     public void ReturnHome()
     {
-        SaveProgress();
+        if (HasSavedProgress())
+        {
+            SaveProgress();
+        }
         IsGameRunning = false;
         ResumeGame();
         SceneManager.LoadScene(homeSceneName);
