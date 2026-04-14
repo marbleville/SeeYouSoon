@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     public float RemainingTime { get; private set; }
     public bool IsPaused { get; private set; }
     public bool IsGameRunning { get; private set; }
+    public float MouseSensitivity { get; private set; }
 
     private float levelStartTime;
     private bool suppressPauseAutoSave = false;
@@ -30,6 +32,15 @@ public class GameManager : MonoBehaviour
     private const string SaveSceneNameKey = "Save_SceneName";
     private const string SaveRemainingTimeKey = "Save_RemainingTime";
     private const string SaveLevelStartTimeKey = "Save_LevelStartTime";
+    private const string MouseSensitivityKey = "Settings_MouseSensitivity";
+    private const float DefaultMouseSensitivity = 200f;
+    private const float MinMouseSensitivity = 20f;
+    private const float MaxMouseSensitivity = 800f;
+
+
+    // Broadcasts new sensitivity value to listeners 
+    // whenever settings UI updates so active scenes apply changes
+    public static event Action<float> OnMouseSensitivityChanged;
 
     private void Awake()
     {
@@ -50,6 +61,7 @@ public class GameManager : MonoBehaviour
         levelStartTime = totalGameTime;
         IsPaused = false;
         IsGameRunning = false;
+        MouseSensitivity = GetSavedMouseSensitivity();
     }
 
     private void Update()
@@ -206,5 +218,23 @@ public class GameManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(RemainingTime / 60f);
         int seconds = Mathf.FloorToInt(RemainingTime % 60f);
         return $"{minutes:00}:{seconds:00}";
+    }
+
+    public static float GetSavedMouseSensitivity()
+    {
+        return Mathf.Clamp(
+            PlayerPrefs.GetFloat(MouseSensitivityKey, DefaultMouseSensitivity),
+            MinMouseSensitivity,
+            MaxMouseSensitivity
+        );
+    }
+
+    public void SetMouseSensitivity(float value)
+    {
+        float clamped = Mathf.Clamp(value, MinMouseSensitivity, MaxMouseSensitivity);
+        MouseSensitivity = clamped;
+        PlayerPrefs.SetFloat(MouseSensitivityKey, clamped);
+        PlayerPrefs.Save();
+        OnMouseSensitivityChanged?.Invoke(clamped);
     }
 }
