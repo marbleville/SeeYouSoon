@@ -53,6 +53,28 @@ public class Prometheus : ADrivable
         UpdateDrivePromptText();
     }
 
+    public void RestoreDriveState(bool shouldBeDriving)
+    {
+        if (shouldBeDriving)
+        {
+            IsDriven = true;
+            interactDinstance = 10;
+            DisablePlayer();
+        }
+        else
+        {
+            if (IsDriven)
+            {
+                EnablePlayer();
+            }
+
+            IsDriven = false;
+            interactDinstance = 2;
+        }
+
+        UpdateDrivePromptText();
+    }
+
     private void DisablePlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");

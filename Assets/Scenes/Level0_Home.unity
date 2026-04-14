@@ -294,7 +294,6 @@ MonoBehaviour:
   - Press E to pick up or drop items when prompted.
   - During the levels, press ''P'' at any time to pause the game.
   - From the pause menu you can restart the level or return to the main menu.
-  - '* Note that returning to the main menu DOES NOT save your progress*'
   - 'For the purpose of this project, pressing ''''K'''' will allow you to win the
     level, and pressing ''''L'''' will allow you to lose the level. '
   - Good luck, and we hope to see you soon...
@@ -3793,8 +3792,8 @@ MonoBehaviour:
   instructionsPanel: {fileID: 1586830220}
   settingsPanel: {fileID: 1401237878}
   teamPanel: {fileID: 1546454380}
+  continueButton: {fileID: 0}
   instructionsDialogueManager: {fileID: 7374669}
-  teamDialogueManager: {fileID: 0}
   firstLevelSceneName: Level1_Office
 --- !u!4 &2140195818
 Transform:
