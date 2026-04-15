@@ -15,6 +15,7 @@ TagManager:
   - PickupPrompt
   - DrivingText
   - DrivePrompt
+  - PrometheusCollider
   layers:
   - Default
   - TransparentFX
