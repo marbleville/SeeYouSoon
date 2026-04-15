@@ -13988,15 +13988,23 @@ PrefabInstance:
       value: 238.5
       objectReference: {fileID: 0}
     - target: {fileID: 3317785370498325534, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
+      propertyPath: pauseSettingsPanel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317785370498325534, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
       propertyPath: gameplayScriptsRoot
       value: 
       objectReference: {fileID: 1570649336}
     - target: {fileID: 3937771725223688341, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4492822531048365580, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
       propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4814608534072505053, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6368586910394716236, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
@@ -14038,6 +14046,10 @@ PrefabInstance:
     - target: {fileID: 6368586910394716236, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6899669157194570054, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7189026370112512463, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
       propertyPath: m_IsActive
