@@ -27,6 +27,8 @@ public class PassengerCar : MonoBehaviour
 
         float waypointDist = Vector3.Distance(waypoints[currentWaypointIdx].position, transform.position);
 
+
+
         if (waypointDist <= 30)
         {
             currentWaypointIdx++;
