@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 1780865106373700045}
   - component: {fileID: 466454781069657453}
   - component: {fileID: 6574029694965328485}
+  - component: {fileID: 1250621010464706716}
   m_Layer: 0
   m_Name: EnemyCar
   m_TagString: Untagged
@@ -672,8 +673,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 30
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -684,6 +685,37 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1250621010464706716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7580331909877073353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848391fec62ea4413a182cc998188755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  startWaypointIdx: 1
 --- !u!1 &7789124083953101324
 GameObject:
   m_ObjectHideFlags: 0
