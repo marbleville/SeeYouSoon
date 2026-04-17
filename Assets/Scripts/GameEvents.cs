@@ -9,6 +9,7 @@ public static class GameEvents
     public static event Action OnRiddleTwoInteracted;
     public static event Action OnRiddleThreeInteracted;
     public static event Action OnRiddleFourInteracted;
+    public static event Action OnCafeTableInteracted;
     public static event Action<int> OnCheckpointReached;
     public static event Action OnElevatorInteracted;
  
@@ -34,6 +35,11 @@ public static class GameEvents
 
     public static void TriggerRiddleFourInteracted() {
         OnRiddleFourInteracted?.Invoke();
+    }
+
+    public static void TriggerCafeTableSit()
+    {
+        OnCafeTableInteracted?.Invoke();
     }
 
     public static void TriggerCheckpointReached(int i) {
