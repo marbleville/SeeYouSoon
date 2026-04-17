@@ -12,7 +12,8 @@ public class ParticleListener : MonoBehaviour
         OnRiddleTwoInteracted,
         OnRiddleThreeInteracted,
         OnRiddleFourInteracted,
-        OnElevatorInteracted
+        OnElevatorInteracted,
+        OnCafeTableInteracted
     }
 
     [Header("Particle Control")]
@@ -76,6 +77,9 @@ public class ParticleListener : MonoBehaviour
             case GameEvent.OnElevatorInteracted:
                 GameEvents.OnElevatorInteracted += callback;
                 break;
+            case GameEvent.OnCafeTableInteracted:
+                GameEvents.OnCafeTableInteracted += callback;
+                break;
         }
     }
  
@@ -103,6 +107,9 @@ public class ParticleListener : MonoBehaviour
                 break;
             case GameEvent.OnElevatorInteracted:
                 GameEvents.OnElevatorInteracted -= callback;
+                break;
+            case GameEvent.OnCafeTableInteracted:
+                GameEvents.OnCafeTableInteracted -= callback;
                 break;
         }
     }
