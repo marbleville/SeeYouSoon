@@ -7,13 +7,17 @@ public class TakeDamage : MonoBehaviour
 {
     public Slider healthSlider;
     public int startingHealth = 100;
+    public float speedAtMaxDamage = 30;
+    public float maxDamage = 25;
+
     private int currentHealth;
     private bool isAlive;
-    
+
     void Start()
     {
         currentHealth = startingHealth;
         isAlive = true;
+        healthSlider.maxValue = startingHealth;
         UpdateHealthSlider();
     }
 
@@ -33,14 +37,14 @@ public class TakeDamage : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Car"))
-        {
-            currentHealth -= 25;
-        } else if (collision.gameObject.CompareTag("Enemy"))
-        {
-            currentHealth -= 10;
-        }
-        currentHealth = Math.Clamp(currentHealth, 0, startingHealth);
+
+        float relativeVelocityMagnitude = collision.relativeVelocity.magnitude;
+        float maxDamagePercent = Mathf.Clamp(relativeVelocityMagnitude / speedAtMaxDamage, 0, 1);
+        int damage = (int)(maxDamage * maxDamagePercent);
+
+        Debug.Log("Collided " + damage);
+
+        currentHealth -= damage;
     }
 
     void UpdateHealthSlider()
