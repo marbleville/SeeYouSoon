@@ -15,6 +15,7 @@ TagManager:
   - PickupPrompt
   - DrivingText
   - DrivePrompt
+  - SitPrompt
   layers:
   - Default
   - TransparentFX

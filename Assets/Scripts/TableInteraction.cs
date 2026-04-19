@@ -1,69 +1,66 @@
 using UnityEngine;
 
-public class TableInteraction : MonoBehaviour
+public class TableInteraction : AInteractable
 {
-    public Transform sitTarget;
+    public override string PromptTag => "InteractPrompt";
+
     public ParticleSystem tableParticles;
-    public float transitionSpeed = 3f;
-    public KeyCode exitKey = KeyCode.E;
 
-    private Camera cam;
     private bool isSitting = false;
-    private Transform originalParent;
     private Vector3 originalPos;
-    private Quaternion originalRot;
-    private Renderer playerRenderer;
+    private GameObject player;
+    private Vector3 sitOffset = new Vector3(0, 0.5f, 0.5f);
 
-    public void Interact(Camera cam)
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    new void Start()
     {
-        if (isSitting) return;
-        this.cam = cam;
-        isSitting = true;
+        base.Start();
 
-        originalParent = cam.transform.parent;
-        originalPos = cam.transform.localPosition;
-        originalRot = cam.transform.localRotation;
+        player = GameObject.FindGameObjectWithTag("Player");
 
-        playerRenderer = cam.transform.root.GetComponentInChildren<Renderer>();
-        if (playerRenderer != null) playerRenderer.enabled = false;
-
-        cam.transform.SetParent(null);
-
-        var controller = originalParent.GetComponent<FPSPlayerController>();
-        if (controller) controller.enabled = false;
-
-        if (tableParticles != null)
+        if (!player)
         {
-            tableParticles.Stop();
-            tableParticles.Clear();
+            Debug.LogWarning("No player found in TableInteraction.cs");
         }
     }
 
-    void Update()
+    // Update is called once per frame
+    new void Update()
     {
-        if (!isSitting || cam == null) return;
+        base.Update();
+    }
 
-        cam.transform.position = Vector3.Lerp(cam.transform.position, sitTarget.position, Time.deltaTime * transitionSpeed);
-        cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, sitTarget.rotation, Time.deltaTime * transitionSpeed);
+    public override void OnInteract()
+    {
+        if (!isSitting) Sit();
+        else StopSitting(); // TODO: If game end in this dialogue, we can omit this. 
 
-        if (Input.GetKeyDown(exitKey))
-            StopSitting();
+    }
+
+    void Sit()
+    {
+        isSitting = true;
+
+        originalPos = player.transform.position;
+
+        player.transform.SetParent(gameObject.transform);
+        player.transform.localPosition = sitOffset;
+        player.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180, 0);
+
+        CharacterController controller = player.GetComponent<CharacterController>();
+        CapsuleCollider collider = player.GetComponent<CapsuleCollider>();
+
+        controller.enabled = false;
+        collider.enabled = false;
+
+        tableParticles.Stop();
     }
 
     void StopSitting()
     {
         isSitting = false;
 
-        cam.transform.SetParent(originalParent);
-        cam.transform.localPosition = originalPos;
-        cam.transform.localRotation = originalRot;
-
-        playerRenderer = cam.transform.root.GetComponentInChildren<Renderer>();
-        playerRenderer.enabled = true;
-
-        var controller = originalParent.GetComponentInParent<FPSPlayerController>();
-        if (controller) controller.enabled = true;
-
-        cam = null;
+        player.transform.SetParent(null);
+        player.transform.position = originalPos;
     }
 }
