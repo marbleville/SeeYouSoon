@@ -164,6 +164,7 @@ public class FPSPlayerController : MonoBehaviour
   }
 
   // Plays footstep sounds based on real movement speed
+  // Uses hysteresis to avoid jittering, etc.
   void HandleFootsteps()
   {
     Vector3 horizontalDelta = transform.position - lastPosition;

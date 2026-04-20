@@ -32,8 +32,18 @@ public class TableInteraction : AInteractable
 
     public override void OnInteract()
     {
-        if (!isSitting) Sit();
-        else StopSitting(); // TODO: If game end in this dialogue, we can omit this. 
+        if (!isSitting)
+        {
+            Sit();
+            return;
+        }
+
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive())
+        {
+            return;
+        }
+
+        StopSitting();
 
     }
 
@@ -53,7 +63,13 @@ public class TableInteraction : AInteractable
         controller.enabled = false;
         collider.enabled = false;
 
-        tableParticles.Stop();
+        if (tableParticles != null)
+        {
+            tableParticles.Stop();
+        }
+
+        // ChooseDialogue listens to this event and starts the end flow.
+        GameEvents.TriggerCafeTableSit();
     }
 
     void StopSitting()
