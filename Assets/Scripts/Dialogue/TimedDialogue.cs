@@ -105,11 +105,13 @@ public class TimedDialogue : MonoBehaviour
 
     private IEnumerator RunTimedDialogue(bool shouldApplyStartDelay)
     {
+        // Clamp timing values so negative Inspector values never break the sequence
         float safeStartDelay = Mathf.Max(0f, startDelay);
         float safeLoopDelay = Mathf.Max(0f, loopDelay);
 
         if (shouldApplyStartDelay && safeStartDelay > 0f)
         {
+            // Coroutine pause before showing the first timed line
             yield return new WaitForSeconds(safeStartDelay);
         }
 
@@ -122,10 +124,13 @@ public class TimedDialogue : MonoBehaviour
 
             ShowTimedDialogue();
             dialogueText.text = lines[i].text;
+            // Keep each line visible for at least a tiny amount of time
             float showTimeForThisLine = Mathf.Max(0.05f, lines[i].showFor);
+            // Delay can be zero, but never negative
             float delayForThisLine = Mathf.Max(0f, lines[i].delayFor);
             bool isLastLine = i == lines.Length - 1;
 
+            // Coroutine pause while the current line is on screen
             yield return new WaitForSeconds(showTimeForThisLine);
 
             HideTimedDialogue();
@@ -140,6 +145,7 @@ public class TimedDialogue : MonoBehaviour
         {
             if (safeLoopDelay > 0f)
             {
+                // Coroutine pause between full dialogue loops.
                 yield return new WaitForSeconds(safeLoopDelay);
             }
 
@@ -157,6 +163,7 @@ public class TimedDialogue : MonoBehaviour
             yield break;
         }
 
+        // Coroutine waits frame-by-frame until the car overlaps this trigger zone.
         while (!IsCarInTriggerZone(triggerZone))
         {
             yield return null;
