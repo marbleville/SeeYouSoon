@@ -35,6 +35,7 @@ public class TableInteraction : AInteractable
         if (!isSitting)
         {
             Sit();
+            isActive = false;
             return;
         }
 
@@ -42,8 +43,6 @@ public class TableInteraction : AInteractable
         {
             return;
         }
-
-        StopSitting();
 
     }
 
