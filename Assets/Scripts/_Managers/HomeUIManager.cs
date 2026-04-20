@@ -65,6 +65,17 @@ public class HomeUIManager : MonoBehaviour
         }
     }
 
+    public void RestartGame()
+    {
+        if (GameManager.Instance == null)
+        {
+            SceneManager.LoadScene(firstLevelSceneName);
+            return;
+        }
+
+        GameManager.Instance.RestartFullGame();
+    }
+
     public void ShowMainMenu()
     {
         mainMenuPanel.SetActive(true);
