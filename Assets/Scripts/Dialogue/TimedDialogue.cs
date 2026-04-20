@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TimedDialogue : MonoBehaviour
 {
@@ -39,9 +40,11 @@ public class TimedDialogue : MonoBehaviour
     private bool isShowingTimedDialogue;
     private bool wasDriving;
     private Collider[] targetCarColliders;
+    private HashSet<Collider> reachedTriggerZones;
 
     void Awake()
     {
+        reachedTriggerZones = new HashSet<Collider>();
         ResolveCarReference();
         CacheCarColliders();
         ResolveUIReferences();
@@ -77,6 +80,7 @@ public class TimedDialogue : MonoBehaviour
         ResolveUIReferences();
         CacheCarColliders();
         if (!CanPlayTimedDialogue()) return;
+        reachedTriggerZones.Clear();
 
         if (stopRegularDialogueWhenStarting && dialogueManager != null && dialogueManager.IsDialogueActive())
         {
@@ -110,7 +114,7 @@ public class TimedDialogue : MonoBehaviour
 
         if (shouldApplyStartDelay && safeStartDelay > 0f)
         {
-            yield return new WaitForSeconds(safeStartDelay);
+            yield return StartCoroutine(WaitForSecondsResponsive(safeStartDelay));
         }
 
         for (int i = 0; i < lines.Length; i++)
@@ -126,13 +130,13 @@ public class TimedDialogue : MonoBehaviour
             float delayForThisLine = Mathf.Max(0f, lines[i].delayFor);
             bool isLastLine = i == lines.Length - 1;
 
-            yield return new WaitForSeconds(showTimeForThisLine);
+            yield return StartCoroutine(WaitForSecondsResponsive(showTimeForThisLine));
 
             HideTimedDialogue();
 
             if (!isLastLine && delayForThisLine > 0f)
             {
-                yield return new WaitForSeconds(delayForThisLine);
+                yield return StartCoroutine(WaitForSecondsResponsive(delayForThisLine));
             }
         }
 
@@ -140,7 +144,7 @@ public class TimedDialogue : MonoBehaviour
         {
             if (safeLoopDelay > 0f)
             {
-                yield return new WaitForSeconds(safeLoopDelay);
+                yield return StartCoroutine(WaitForSecondsResponsive(safeLoopDelay));
             }
 
             timedDialogueRoutine = StartCoroutine(RunTimedDialogue(false));
@@ -157,9 +161,64 @@ public class TimedDialogue : MonoBehaviour
             yield break;
         }
 
-        while (!IsCarInTriggerZone(triggerZone))
+        while (!HasReachedTriggerZone(triggerZone))
         {
+            CaptureReachedTriggerZones();
             yield return null;
+        }
+    }
+
+    private IEnumerator WaitForSecondsResponsive(float seconds)
+    {
+        float remaining = Mathf.Max(0f, seconds);
+        while (remaining > 0f)
+        {
+            CaptureReachedTriggerZones();
+            remaining -= Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private bool HasReachedTriggerZone(Collider triggerZone)
+    {
+        if (triggerZone == null)
+        {
+            return false;
+        }
+
+        if (reachedTriggerZones.Contains(triggerZone))
+        {
+            return true;
+        }
+
+        if (IsCarInTriggerZone(triggerZone))
+        {
+            reachedTriggerZones.Add(triggerZone);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void CaptureReachedTriggerZones()
+    {
+        if (lines == null || lines.Length == 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            Collider triggerZone = lines[i].triggerZone;
+            if (triggerZone == null || reachedTriggerZones.Contains(triggerZone))
+            {
+                continue;
+            }
+
+            if (IsCarInTriggerZone(triggerZone))
+            {
+                reachedTriggerZones.Add(triggerZone);
+            }
         }
     }
 
