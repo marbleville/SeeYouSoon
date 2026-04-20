@@ -31,7 +31,8 @@ public class TakeDamage : MonoBehaviour
 
         if (!isAlive)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            LevelManager levelManager = GetComponent<LevelManager>();
+            levelManager.HandleLevelFail();
         }
     }
 
@@ -41,8 +42,6 @@ public class TakeDamage : MonoBehaviour
         float relativeVelocityMagnitude = collision.relativeVelocity.magnitude;
         float maxDamagePercent = Mathf.Clamp(relativeVelocityMagnitude / speedAtMaxDamage, 0, 1);
         int damage = (int)(maxDamage * maxDamagePercent);
-
-        Debug.Log("Collided " + damage);
 
         currentHealth -= damage;
     }
