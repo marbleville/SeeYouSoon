@@ -21,6 +21,8 @@ public class DialogueManager : MonoBehaviour
     [Header("Options")]
     public bool playIntroOnStart = false;
     public bool loopDialogue = true;
+    public bool enableArrowInput = true;
+    public bool alwaysShowNextArrowWhenActive = false;
 
     private string currentSpeaker;
     private string[] currentLines;
@@ -55,6 +57,7 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
         if (!isDialogueActive) return;
+        if (!enableArrowInput) return;
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -93,7 +96,7 @@ public class DialogueManager : MonoBehaviour
             previousArrow.SetActive(currentLineIndex > 0);
 
         if (nextArrow != null)
-            nextArrow.SetActive(currentLineIndex < currentLines.Length - 1);
+            nextArrow.SetActive(alwaysShowNextArrowWhenActive || currentLineIndex < currentLines.Length - 1);
     }
 
     public void NextLine()
