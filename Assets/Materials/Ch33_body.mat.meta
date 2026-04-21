@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/Ch33_body.mat.meta
 guid: ea23e7880d12ebd4489ce94070f5101e
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
+========
+guid: 0f953d514f74a40f2b2573054892c6b6
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+>>>>>>>> main:Assets/OnlineAssets/Audio/LudoLoon Studio.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
