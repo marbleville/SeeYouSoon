@@ -119,6 +119,7 @@ public class Prometheus : ADrivable
 
 
         player.transform.localPosition = new Vector3(-2, 1, 0);
+        player.transform.rotation = Quaternion.Euler(0, player.transform.rotation.y, 0);
 
         player.transform.SetParent(null);
 

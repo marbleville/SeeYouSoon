@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TimedDialogue : MonoBehaviour
 {
@@ -39,9 +40,11 @@ public class TimedDialogue : MonoBehaviour
     private bool isShowingTimedDialogue;
     private bool wasDriving;
     private Collider[] targetCarColliders;
+    private HashSet<Collider> reachedTriggerZones;
 
     void Awake()
     {
+        reachedTriggerZones = new HashSet<Collider>();
         ResolveCarReference();
         CacheCarColliders();
         ResolveUIReferences();
@@ -77,6 +80,7 @@ public class TimedDialogue : MonoBehaviour
         ResolveUIReferences();
         CacheCarColliders();
         if (!CanPlayTimedDialogue()) return;
+        reachedTriggerZones.Clear();
 
         if (stopRegularDialogueWhenStarting && dialogueManager != null && dialogueManager.IsDialogueActive())
         {
@@ -137,7 +141,7 @@ public class TimedDialogue : MonoBehaviour
 
             if (!isLastLine && delayForThisLine > 0f)
             {
-                yield return new WaitForSeconds(delayForThisLine);
+                yield return StartCoroutine(WaitForSecondsResponsive(delayForThisLine));
             }
         }
 
@@ -166,7 +170,62 @@ public class TimedDialogue : MonoBehaviour
         // Coroutine waits frame-by-frame until the car overlaps this trigger zone.
         while (!IsCarInTriggerZone(triggerZone))
         {
+            CaptureReachedTriggerZones();
             yield return null;
+        }
+    }
+
+    private IEnumerator WaitForSecondsResponsive(float seconds)
+    {
+        float remaining = Mathf.Max(0f, seconds);
+        while (remaining > 0f)
+        {
+            CaptureReachedTriggerZones();
+            remaining -= Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private bool HasReachedTriggerZone(Collider triggerZone)
+    {
+        if (triggerZone == null)
+        {
+            return false;
+        }
+
+        if (reachedTriggerZones.Contains(triggerZone))
+        {
+            return true;
+        }
+
+        if (IsCarInTriggerZone(triggerZone))
+        {
+            reachedTriggerZones.Add(triggerZone);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void CaptureReachedTriggerZones()
+    {
+        if (lines == null || lines.Length == 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            Collider triggerZone = lines[i].triggerZone;
+            if (triggerZone == null || reachedTriggerZones.Contains(triggerZone))
+            {
+                continue;
+            }
+
+            if (IsCarInTriggerZone(triggerZone))
+            {
+                reachedTriggerZones.Add(triggerZone);
+            }
         }
     }
 
