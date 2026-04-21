@@ -294,11 +294,16 @@ MonoBehaviour:
   - Press E to pick up or drop items when prompted.
   - During the levels, press ''P'' at any time to pause the game.
   - From the pause menu you can restart the level or return to the main menu.
+  - You can hit space to jump, shift to sprint, and control to crouch.
+  - 'If there are other controls, the level will tell you. '
+  - Make sure you pay attention to the dialogue for clues!
   - 'For the purpose of this project, pressing ''''K'''' will allow you to win the
     level, and pressing ''''L'''' will allow you to lose the level. '
   - Good luck, and we hope to see you soon...
   playIntroOnStart: 0
   loopDialogue: 1
+  enableArrowInput: 1
+  alwaysShowNextArrowWhenActive: 0
 --- !u!4 &7374670
 Transform:
   m_ObjectHideFlags: 0
