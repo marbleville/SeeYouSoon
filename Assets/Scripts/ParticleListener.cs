@@ -19,11 +19,15 @@ public class ParticleListener : MonoBehaviour
     [Header("Particle Control")]
     public GameEvent listenFor = GameEvent.None;
     public GameEvent stopOn = GameEvent.None;
+    public bool playOnStart = false;
     private ParticleSystem particles;
 
     void Start()
     {
         particles = GetComponent<ParticleSystem>();
+        var childPS = GetComponentInChildren<ParticleSystem>();
+        Debug.Log($"[ParticleListener] GetComponent={particles}, GetComponentInChildren={childPS}, GO active={gameObject.activeInHierarchy}");
+
         if (particles == null)
         {
             Debug.LogWarning("No particle system found.");
@@ -31,7 +35,10 @@ public class ParticleListener : MonoBehaviour
         }
 
         // Event-driven particles should never auto-play on scene load
-        if (listenFor != GameEvent.None)
+        if (playOnStart)
+        {
+            particles.Play();
+        } else if (listenFor != GameEvent.None)
         {
             var main = particles.main;
             main.playOnAwake = false;
