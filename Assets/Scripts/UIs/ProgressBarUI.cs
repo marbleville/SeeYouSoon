@@ -27,11 +27,11 @@ public class ProgressBarUI : MonoBehaviour
         GameEvents.OnCheckpointReached -= UpdateProgressBar;
     }
 
-    void UpdateProgressBar(int index)
+    public void UpdateProgressBar(int index)
     {
         if (progressBar)
         {
-            progressBar.value = (float) index / totalProgress;
+            progressBar.value = (float)index / totalProgress;
         }
     }
 }

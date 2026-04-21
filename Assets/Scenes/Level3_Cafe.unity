@@ -7796,6 +7796,10 @@ PrefabInstance:
       value: 238.5
       objectReference: {fileID: 0}
     - target: {fileID: 3317785370498325534, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
+      propertyPath: levelIdx
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317785370498325534, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
       propertyPath: isFinalLevel
       value: 1
       objectReference: {fileID: 0}
@@ -38847,3 +38851,4 @@ SceneRoots:
   - {fileID: 91878237}
   - {fileID: 368742571}
   - {fileID: 2010370128}
+  - {fileID: 578010718}

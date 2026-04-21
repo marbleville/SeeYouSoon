@@ -5,6 +5,7 @@ public class LevelManager : MonoBehaviour
     [Header("Level Info")]
     [SerializeField] private bool isFinalLevel = false;
     [SerializeField] private string nextSceneName = "";
+    [SerializeField] private int levelIdx = 0;
 
     [Header("Panels")]
     [SerializeField]
@@ -24,6 +25,7 @@ public class LevelManager : MonoBehaviour
 
     private bool levelEnded = false;
 
+
     private void Start()
     {
         HideAllMenus();
@@ -34,6 +36,11 @@ public class LevelManager : MonoBehaviour
         {
             GameManager.Instance.RegisterLevelStart();
         }
+
+        if (levelIdx <= 1) return;
+
+        ProgressBarUI progressBar = FindFirstObjectByType<ProgressBarUI>();
+        progressBar.UpdateProgressBar(levelIdx + 1);
     }
 
     private void Update()
