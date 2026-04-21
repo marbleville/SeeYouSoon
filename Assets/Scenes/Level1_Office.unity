@@ -274,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   interactDinstance: 2
   promptFadeBuffer: 0.2
+  isActive: 1
 --- !u!1 &73411891
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,6 +533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RiddleInteractable
   interactDinstance: 2
   promptFadeBuffer: 0.2
+  isActive: 1
   riddleNumber: 2
   speakerName: You
   dialogueLines:
@@ -5778,6 +5780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RiddleInteractable
   interactDinstance: 2
   promptFadeBuffer: 0.2
+  isActive: 1
   riddleNumber: 0
   speakerName: You
   dialogueLines:
@@ -5830,6 +5833,8 @@ MonoBehaviour:
   - I just need to grab this paper and go to my desk.
   playIntroOnStart: 1
   loopDialogue: 0
+  enableArrowInput: 1
+  alwaysShowNextArrowWhenActive: 0
 --- !u!4 &519226216
 Transform:
   m_ObjectHideFlags: 0
@@ -5978,6 +5983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DocumentPickup
   interactDinstance: 2
   promptFadeBuffer: 0.2
+  isActive: 1
   pickUpSFX: {fileID: 0}
 --- !u!54 &797690701
 Rigidbody:
@@ -6215,6 +6221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
   interactDinstance: 2
   promptFadeBuffer: 0.2
+  isActive: 1
   elevatorController: {fileID: 1811458670}
 --- !u!114 &1307642268
 MonoBehaviour:
@@ -6230,6 +6237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
   interactDinstance: 2
   promptFadeBuffer: 0.2
+  isActive: 1
   elevatorController: {fileID: 1811458670}
 --- !u!114 &1307642269
 MonoBehaviour:
@@ -6245,6 +6253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
   interactDinstance: 2
   promptFadeBuffer: 0.2
+  isActive: 1
   elevatorController: {fileID: 1811458669}
 --- !u!1 &1511490394
 GameObject:
@@ -8133,6 +8142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
   interactDinstance: 10
   promptFadeBuffer: 0.2
+  isActive: 1
   elevatorController: {fileID: 0}
 --- !u!114 &1811458665
 MonoBehaviour:
@@ -8148,6 +8158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
   interactDinstance: 100
   promptFadeBuffer: 0.2
+  isActive: 1
   elevatorController: {fileID: 0}
 --- !u!65 &1811458667
 BoxCollider:
@@ -8207,6 +8218,7 @@ MonoBehaviour:
   rightDoorAnimator: {fileID: 1307642264}
   sceneLoadDelay: 1
   nextSceneName: Level2_City
+  levelManager: {fileID: 0}
 --- !u!114 &1811458670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8223,6 +8235,7 @@ MonoBehaviour:
   rightDoorAnimator: {fileID: 1307642265}
   sceneLoadDelay: 0.5
   nextSceneName: Level2_City
+  levelManager: {fileID: 0}
 --- !u!1 &1864771485
 GameObject:
   m_ObjectHideFlags: 0
@@ -8396,6 +8409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   interactDinstance: 2
   promptFadeBuffer: 0.2
+  isActive: 1
   pickUpSFX: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
 --- !u!54 &1899364062
 Rigidbody:
@@ -13678,6 +13692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorInteractable
   interactDinstance: 2
   promptFadeBuffer: 0.2
+  isActive: 1
   elevatorController: {fileID: 1811458669}
 --- !u!1 &2112358899
 GameObject:
@@ -13933,6 +13948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RiddleInteractable
   interactDinstance: 1
   promptFadeBuffer: 0.2
+  isActive: 1
   riddleNumber: 3
   speakerName: You
   dialogueLines:
@@ -14223,6 +14239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RiddleInteractable
   interactDinstance: 2
   promptFadeBuffer: 0.2
+  isActive: 1
   riddleNumber: 1
   speakerName: You
   dialogueLines:
@@ -14248,6 +14265,10 @@ PrefabInstance:
     - target: {fileID: 662538471468629519, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 238.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317785370498325534, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
+      propertyPath: nextSceneName
+      value: Level2_City
       objectReference: {fileID: 0}
     - target: {fileID: 3317785370498325534, guid: bf20bb98753c94de48b77bd39964f55b, type: 3}
       propertyPath: pauseSettingsPanel

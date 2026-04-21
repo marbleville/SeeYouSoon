@@ -25,7 +25,18 @@ public class ParticleListener : MonoBehaviour
     {
         particles = GetComponent<ParticleSystem>();
         if (particles == null)
+        {
             Debug.LogWarning("No particle system found.");
+            return;
+        }
+
+        // Event-driven particles should never auto-play on scene load
+        if (listenFor != GameEvent.None)
+        {
+            var main = particles.main;
+            main.playOnAwake = false;
+            particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
     }
 
     void OnEnable()

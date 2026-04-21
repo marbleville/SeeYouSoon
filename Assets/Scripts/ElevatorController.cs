@@ -14,6 +14,9 @@ public class ElevatorController : MonoBehaviour
     [Header("Next Scene")]
     public String nextSceneName;
 
+    [Header("Win Flow")]
+    [SerializeField] private LevelManager levelManager;
+
     private bool openPressed = false;
 
     public void PressOpen()
@@ -31,7 +34,20 @@ public class ElevatorController : MonoBehaviour
     {
         yield return new WaitForSeconds(sceneLoadDelay);
 
+        if (levelManager == null)
+        {
+            levelManager = FindFirstObjectByType<LevelManager>();
+        }
+
+        if (levelManager != null)
+        {
+            levelManager.HandleLevelWin();
+            yield break;
+        }
+
         if (GameManager.Instance)
+        {
             GameManager.Instance.LoadNextLevel(nextSceneName);
+        }
     }
 }
