@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TakeDamage : MonoBehaviour
@@ -9,6 +7,7 @@ public class TakeDamage : MonoBehaviour
     public int startingHealth = 100;
     public float speedAtMaxDamage = 30;
     public float maxDamage = 25;
+    public int minDamage = 2;
 
     private int currentHealth;
     private bool isAlive;
@@ -31,7 +30,7 @@ public class TakeDamage : MonoBehaviour
 
         if (!isAlive)
         {
-            LevelManager levelManager = GetComponent<LevelManager>();
+            LevelManager levelManager = FindFirstObjectByType<LevelManager>();
             levelManager.HandleLevelFail();
         }
     }
@@ -42,6 +41,7 @@ public class TakeDamage : MonoBehaviour
         float relativeVelocityMagnitude = collision.relativeVelocity.magnitude;
         float maxDamagePercent = Mathf.Clamp(relativeVelocityMagnitude / speedAtMaxDamage, 0, 1);
         int damage = (int)(maxDamage * maxDamagePercent);
+        damage = damage > minDamage ? damage : minDamage;
 
         currentHealth -= damage;
     }

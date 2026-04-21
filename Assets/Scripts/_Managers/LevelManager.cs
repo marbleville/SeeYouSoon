@@ -7,19 +7,19 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private string nextSceneName = "";
 
     [Header("Panels")]
-    [SerializeField] 
+    [SerializeField]
     private GameObject pausePanel;
-    [SerializeField] 
+    [SerializeField]
     private GameObject pauseSettingsPanel;
-    [SerializeField] 
+    [SerializeField]
     private GameObject failPanel;
-    [SerializeField] 
+    [SerializeField]
     private GameObject winPanel;
-    [SerializeField] 
+    [SerializeField]
     private GameObject finalWinPanel;
 
     [Header("Player Control Scripts")]
-    [SerializeField] 
+    [SerializeField]
     private GameObject gameplayScriptsRoot;
 
     private bool levelEnded = false;
