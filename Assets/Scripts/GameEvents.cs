@@ -1,4 +1,5 @@
 using System;
+using System.Net.NetworkInformation;
 
 public static class GameEvents
 {
@@ -8,7 +9,9 @@ public static class GameEvents
     public static event Action OnRiddleTwoInteracted;
     public static event Action OnRiddleThreeInteracted;
     public static event Action OnRiddleFourInteracted;
+    public static event Action OnCafeTableInteracted;
     public static event Action<int> OnCheckpointReached;
+    public static event Action OnElevatorInteracted;
  
     public static void TriggerDocumentsPickedUp() {
         OnDocumentPickedUp?.Invoke();
@@ -34,7 +37,17 @@ public static class GameEvents
         OnRiddleFourInteracted?.Invoke();
     }
 
+    public static void TriggerCafeTableSit()
+    {
+        OnCafeTableInteracted?.Invoke();
+    }
+
     public static void TriggerCheckpointReached(int i) {
         OnCheckpointReached?.Invoke(i);
+    }
+
+    public static void TriggerElevatorInteracted()
+    {
+        OnElevatorInteracted?.Invoke();
     }
 }

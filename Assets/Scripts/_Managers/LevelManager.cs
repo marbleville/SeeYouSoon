@@ -38,13 +38,13 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        // Will remove at end - for testing purposes
+        // Fail level for testing
         if (Input.GetKeyDown(KeyCode.L))
         {
             HandleLevelFail();
         }
 
-        // Will remove at end - for testing purposes
+        // Win level for testing
         if (Input.GetKeyDown(KeyCode.K))
         {
             HandleLevelWin();

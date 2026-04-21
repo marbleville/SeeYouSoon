@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ElevatorInteractable : AInteractable
 {
-
+    public ElevatorController elevatorController;
     new void Start()
     {
         base.Start();
@@ -13,13 +13,13 @@ public class ElevatorInteractable : AInteractable
     {
         base.Update();
     }
+
     public override void OnInteract()
     {
-        LevelManager levelManager = FindFirstObjectByType<LevelManager>();
-        if (levelManager)
+        if (elevatorController)
         {
-            levelManager.HandleLevelWin();
-            levelManager.LoadNextLevel();
+            elevatorController.PressOpen();
+            GameEvents.TriggerElevatorInteracted();
         }
     }
 }

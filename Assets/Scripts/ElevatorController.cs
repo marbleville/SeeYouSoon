@@ -4,40 +4,31 @@ using UnityEngine;
 
 public class ElevatorController : MonoBehaviour
 {
-    public static ElevatorController Instance;
-    public Animator doorAnimator;
+    [Header("Door Animators")]
+    public Animator leftDoorAnimator;
+    public Animator rightDoorAnimator;
 
     [Header("Timing")]
-    public int closeDelay = 2;
-    public int sceneLoadDelay = 1;
+    public float sceneLoadDelay = 2f;
 
     [Header("Next Scene")]
     public String nextSceneName;
 
-    private bool isTriggered = false;
+    private bool openPressed = false;
 
-    void Awake()
+    public void PressOpen()
     {
-        Instance = this;
+        if (openPressed) return;
+        openPressed = true;
+
+        if (leftDoorAnimator) leftDoorAnimator.SetBool("isOpen", true);
+        if (rightDoorAnimator) rightDoorAnimator.SetBool("isOpen", true);
+
+        StartCoroutine(LoadAfterDelay());
     }
 
-    public void TriggerElevator()
+    IEnumerator LoadAfterDelay()
     {
-        if (isTriggered) return;
-        isTriggered = true;
-        StartCoroutine(ElevatorSequence());
-    }
-
-    IEnumerator ElevatorSequence()
-    {
-        if (doorAnimator) 
-            doorAnimator.SetTrigger("Open");
-        
-        yield return new WaitForSeconds(closeDelay);
-
-        if (doorAnimator)
-            doorAnimator.SetTrigger("Close");
-
         yield return new WaitForSeconds(sceneLoadDelay);
 
         if (GameManager.Instance)

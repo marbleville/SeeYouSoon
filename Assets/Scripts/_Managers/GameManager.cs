@@ -175,6 +175,7 @@ public class GameManager : MonoBehaviour
         if (!HasSavedProgress())
             return;
 
+        // Clamp loaded values so corrupted/old saves cannot exceed valid timer bounds.
         RemainingTime = Mathf.Clamp(PlayerPrefs.GetFloat(SaveRemainingTimeKey, totalGameTime), 0f, totalGameTime);
         levelStartTime = Mathf.Clamp(PlayerPrefs.GetFloat(SaveLevelStartTimeKey, RemainingTime), 0f, totalGameTime);
         IsGameRunning = true;
@@ -225,6 +226,7 @@ public class GameManager : MonoBehaviour
 
     public static float GetSavedMouseSensitivity()
     {
+        // Clamp sensitivity to gameplay-safe limits
         return Mathf.Clamp(
             PlayerPrefs.GetFloat(MouseSensitivityKey, DefaultMouseSensitivity),
             MinMouseSensitivity,
@@ -234,6 +236,7 @@ public class GameManager : MonoBehaviour
 
     public void SetMouseSensitivity(float value)
     {
+        // Clamp slider/manual input before saving + broadcasting
         float clamped = Mathf.Clamp(value, MinMouseSensitivity, MaxMouseSensitivity);
         MouseSensitivity = clamped;
         PlayerPrefs.SetFloat(MouseSensitivityKey, clamped);

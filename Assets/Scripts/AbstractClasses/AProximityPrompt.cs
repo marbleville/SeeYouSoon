@@ -7,6 +7,7 @@ public abstract class AProximityPrompt : MonoBehaviour
   public float interactDinstance = 2;
   [Range(0, 1)]
   public float promptFadeBuffer = 0.2f;
+  public bool isActive = true;
 
   public abstract string PromptTag { get; }
   protected virtual int InputPriority => 0;
@@ -40,6 +41,7 @@ public abstract class AProximityPrompt : MonoBehaviour
 
   public void Update()
   {
+    // Clamp keeps debounce timer bounded and stable as it counts down each frame.
     inputDebounceTimer = Mathf.Clamp(inputDebounceTimer - Time.deltaTime, -0.1f, debounceTime);
 
     if (!player) return;
@@ -57,7 +59,7 @@ public abstract class AProximityPrompt : MonoBehaviour
     CanvasGroup canvasGroup = interactPromptObject.GetComponent<CanvasGroup>();
     if (!canvasGroup) return;
 
-    // Avoid multiple instances fighting over the same prompt canvas alpha.
+    // Avoid multiple instances fighting over the same prompt canvas alpha
     AProximityPrompt closestForTag = GetClosestInstanceForPromptTag();
     if (closestForTag != this) return;
 
@@ -67,7 +69,7 @@ public abstract class AProximityPrompt : MonoBehaviour
       float fadeRange = interactDinstance * Mathf.Max(promptFadeBuffer, 0.0001f);
       float startFadeAt = interactDinstance - fadeRange;
 
-      // Full opacity when close; fade only near the outer interaction boundary.
+      // Full opacity when close; fade only near the outer interaction boundary
       if (playerDist <= startFadeAt)
       {
         opacity = 1f;
@@ -85,7 +87,7 @@ public abstract class AProximityPrompt : MonoBehaviour
   private bool ShouldNotShowPrompt()
   {
     bool isDialogueActive = DialogueManager.Instance && DialogueManager.Instance.IsDialogueActive();
-    return playerDist > interactDinstance || inputDebounceTimer > 0 || isDialogueActive;
+    return playerDist > interactDinstance || inputDebounceTimer > 0 || isDialogueActive || !isActive;
   }
 
   private void HandlePromptInput()

@@ -17,6 +17,7 @@ TagManager:
   - DrivePrompt
   - PrometheusCollider
   - Prometheus
+  - SitPrompt
   layers:
   - Default
   - TransparentFX
