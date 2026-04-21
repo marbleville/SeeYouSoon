@@ -115,8 +115,8 @@ public class TimedDialogue : MonoBehaviour
 
         if (shouldApplyStartDelay && safeStartDelay > 0f)
         {
-            // Coroutine pause before showing the first timed line
-            yield return new WaitForSeconds(safeStartDelay);
+            // Wait in frame steps so trigger crossings can still be captured.
+            yield return StartCoroutine(WaitForSecondsResponsive(safeStartDelay));
         }
 
         for (int i = 0; i < lines.Length; i++)
@@ -134,8 +134,8 @@ public class TimedDialogue : MonoBehaviour
             float delayForThisLine = Mathf.Max(0f, lines[i].delayFor);
             bool isLastLine = i == lines.Length - 1;
 
-            // Coroutine pause while the current line is on screen
-            yield return new WaitForSeconds(showTimeForThisLine);
+            // Wait in frame steps so trigger crossings can still be captured.
+            yield return StartCoroutine(WaitForSecondsResponsive(showTimeForThisLine));
 
             HideTimedDialogue();
 
@@ -149,8 +149,8 @@ public class TimedDialogue : MonoBehaviour
         {
             if (safeLoopDelay > 0f)
             {
-                // Coroutine pause between full dialogue loops.
-                yield return new WaitForSeconds(safeLoopDelay);
+                // Wait in frame steps so trigger crossings can still be captured.
+                yield return StartCoroutine(WaitForSecondsResponsive(safeLoopDelay));
             }
 
             timedDialogueRoutine = StartCoroutine(RunTimedDialogue(false));
@@ -168,7 +168,7 @@ public class TimedDialogue : MonoBehaviour
         }
 
         // Coroutine waits frame-by-frame until the car overlaps this trigger zone.
-        while (!IsCarInTriggerZone(triggerZone))
+        while (!HasReachedTriggerZone(triggerZone))
         {
             CaptureReachedTriggerZones();
             yield return null;
