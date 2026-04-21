@@ -259713,6 +259713,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4717686891092369260, guid: f1553ecbefd0a4b988f172e817ca262c, type: 3}
+      propertyPath: m_Speed
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8257087164765270962, guid: f1553ecbefd0a4b988f172e817ca262c, type: 3}
       propertyPath: m_Name
       value: CrazyEx

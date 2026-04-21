@@ -3,11 +3,16 @@ using UnityEngine.AI;
 
 public class ExBehavior : MonoBehaviour
 {
+    enum State { seek, idle }
+
     NavMeshAgent agent;
     GameObject player;
     GameObject prometheus;
     Vector3 lastPlayerPos;
     float timeSinceLastPos;
+    State state = State.seek;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +37,15 @@ public class ExBehavior : MonoBehaviour
             timeSinceLastPos = 0;
         }
 
+        if (Vector3.Distance(player.transform.position, lastPlayerPos) < 0.1)
+        {
+            state = State.idle;
+        }
+        else
+        {
+            state = State.seek;
+        }
+
         if (!prometheus.GetComponent<Prometheus>().IsDriven) return;
 
         Drive();
@@ -39,12 +53,15 @@ public class ExBehavior : MonoBehaviour
 
     void Drive()
     {
-        if (Vector3.Distance(player.transform.position, lastPlayerPos) < 0.1)
+        switch (state)
         {
-            agent.SetDestination(gameObject.transform.position + (player.transform.forward * -5));
-            return;
+            case State.seek:
+                agent.SetDestination(player.transform.position);
+                break;
+            case State.idle:
+                agent.SetDestination(gameObject.transform.position + (player.transform.forward * -5));
+                break;
         }
 
-        agent.SetDestination(player.transform.position);
     }
 }
